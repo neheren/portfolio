@@ -1,5 +1,7 @@
 require('dotenv').config()
+const apiKey = require('./api-key');
 
+console.log({apiKey})
 module.exports = {
   siteMetadata: {
     title: `Creative Portfolio`,
@@ -9,9 +11,17 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-transformer-remark`,
     {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: '/src/graphics'
+        }
+      }
+    },
+    {
       resolve: `gatsby-source-datocms`,
       options: {
-        apiToken: process.env.DATO_API_TOKEN,
+        apiToken: apiKey.key || process.env.DATO_API_TOKEN,
       },
     },
   ],
