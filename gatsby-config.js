@@ -4,6 +4,7 @@ try{
    apiKey = require('./api-key');
 } catch (e) {
   console.warn(e) 
+  apiKey = {}
   apiKey.key = null
 }
 
