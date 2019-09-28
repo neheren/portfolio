@@ -2,8 +2,9 @@ require('dotenv').config()
 let apiKey
 try{
    apiKey = require('./api-key');
-} catch{
-  apiKey = null
+} catch (e) {
+  console.warn(e) 
+  apiKey.key = null
 }
 
 console.log({apiKey})
