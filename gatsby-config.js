@@ -1,5 +1,10 @@
 require('dotenv').config()
-const apiKey = require('./api-key');
+let apiKey
+try{
+   apiKey = require('./api-key');
+} catch{
+  apiKey = null
+}
 
 console.log({apiKey})
 module.exports = {
