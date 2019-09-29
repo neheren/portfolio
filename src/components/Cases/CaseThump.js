@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import HoverTransformer from '../HoverTransformer'
 import arrow from '../../graphics/arrow-white.svg'
 import img1 from '../../graphics/img1.jpg'
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const Root = styled.div`
     position: relative;
@@ -69,15 +70,27 @@ const HoverTransformerWrapper = styled(HoverTransformer)`
 `
 
 const CaseThump = (props) => {
-    console.log(props.getProject())
     return (
         <HoverTransformerWrapper className={props.className} >
             {props.big && <Arrow src={arrow}/> }
             {props.big && <Title> <b>latest</b> project</Title> }
-            <Root className={props.className} onClick={props.openProject()}>
-                <Content>
-                </Content>
-            </Root>
+            <AniLink 
+                onClick={props.openProject()}
+                paintDrip
+                bg="white"
+                color="white"
+                direction="down"
+                delay={5}
+                entry={{
+                    delay: 0.5
+                }}
+                duration={0.5}
+                to="/about">
+                <Root className={props.className} >
+                    <Content>
+                    </Content>
+                </Root>
+            </AniLink>
         </HoverTransformerWrapper>
     )
 }

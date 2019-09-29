@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Root = styled.div`
@@ -9,7 +8,7 @@ const Root = styled.div`
 `
 
 const LinkWrapper = styled.div`
-    
+    max-width: 100%;
 `
 const LinkItem = styled.a`
     text-decoration: none;

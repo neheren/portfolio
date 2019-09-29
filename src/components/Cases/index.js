@@ -33,6 +33,7 @@ const C = styled(CaseThump)`
 ` 
 
 const Root = styled.div`
+    overflow:hidden;
     background: #EFEFEF;
     padding-top: 1px;
     display: grid;
@@ -90,8 +91,13 @@ export default class index extends Component {
         // prop: PropTypes
     }
 
-    openProject(){
-        console.log('open')
+    state = {
+        chosenProject: -1,
+        projectOpened: false,
+    }
+
+    openProject(index){
+        this.setState({projectOpened: !this.state.projectOpened, chosenProject: index})
     }
 
     
@@ -105,18 +111,28 @@ export default class index extends Component {
             'heyson6',
             'heyson7',
         ]
+
+        const {chosenProject, projectOpened} = this.state;
+        
         const p = {
             test: "yy",
-            openProject: () => this.openProject.bind(this),
+            openProject: (index) => this.openProject.bind(this, index),
             projectIndex: -1,
             getProject: () => {
                 p.projectIndex++
-                return cases[p.projectIndex]
-            }
+                return {case: cases[p.projectIndex], index: p.projectIndex}
+            },
+            tileIndex: -1,
+            getTileIndex: () => {
+                p.tileIndex++
+                return p.tileIndex
+            },
+            chosenProject,
+            projectOpened,
         }
         
         const tiles = [
-            <B lg {...p} />,    <B db {...p} />,                        <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,   <B md {...p} />,    <B lg b {...p} />,
+            <B lg {...p} />,    <B db {...p} />,                        <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
             <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,       <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg {...p} />,
             <B lg {...p} />,    <B md {...p} />,    <C big {...p} />,                       <C {...p} />,       <C {...p} /> ,   <C {...p} />,    <C {...p} />,         <B md {...p} />,    <B lg {...p} />,
             <B lg {...p} />,    <B md {...p} />,                                            <C b {...p} />,     <C {...p} />,    <C {...p} />,    <C {...p} />,         <B md {...p} />,    <B lg {...p} />,
@@ -126,12 +142,8 @@ export default class index extends Component {
             <B lg b {...p} />,  <B md b {...p} />,  <B sm  {...p} />,   <B sm b {...p} />,  <B sm b {...p} />,  <B b {...p} />,  <B sm b {...p} />,<B sm b {...p} />,   <B md b {...p} />,  <B lg b {...p} />,
         ]
         return (
-        
-            // tiles.forEach(element => {
-                
-            // })
             <>
-                <Root >
+                <Root>
                     {
                         tiles
                     }
