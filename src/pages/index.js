@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import styled, {ThemeProvider} from 'styled-components'
-import Front from '../components/Front'
+import Front from '../components/Front/index.js'
 import theme from '../styles/theme'
+import Cases from '../components/Cases'
 
 const IndexPage = ({ data }) => (
   <ThemeProvider theme={theme}>
-    <Front/>
+    {/* <Front /> */}
+    <Cases />
   </ThemeProvider>
 )
 

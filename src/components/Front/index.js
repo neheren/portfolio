@@ -1,19 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import bg from '../graphics/thump.png'
-import slytLogo from '../graphics/slyt.svg'
-import Menu from './Menu'
+import bg from '../../graphics/thump.png'
+import slytLogo from '../../graphics/slyt.svg'
+import Menu from '../Menu'
 import Links from './Links'
-import Copyright from './Copyright'
-import HoverTransformer from './HoverTransformer'
+import Copyright from '../Copyright'
+import HoverTransformer from '../HoverTransformer'
 import InlineVideo from './Video'
 
 const Root = styled.div`
     display: grid;
     background: #EFEFEF;
-    grid-template-columns: ${props => props.theme.spacing(16)} auto ${props => props.theme.spacing(16)};
-    grid-template-rows: ${props => props.theme.spacing(16)} auto ${props => props.theme.spacing(16)};
+    grid-template-columns: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
+    grid-template-rows: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
     @media ${props => props.theme.media.md} {
         grid-template-columns: ${props => props.theme.spacing(4)} auto ${props => props.theme.spacing(4)};
         grid-template-rows: ${props => props.theme.spacing(4)} auto ${props => props.theme.spacing(4)};

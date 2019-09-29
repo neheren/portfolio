@@ -15,16 +15,16 @@ const LinkItem = styled.a`
     text-decoration: none;
     color: black;
     font-weight: bold;
-    margin: ${props => props.theme.spacing(0, 4)};
+    margin-left: ${props => props.first ? props.theme.spacing(2) : props.theme.spacing(8)};
 ` 
 
 function Links(props) {
     return (
         <Root>
             <LinkWrapper>
-                <LinkItem href="/">video</LinkItem>
-                <LinkItem href="/">about</LinkItem>
+                <LinkItem href="/" first>video</LinkItem>
                 <LinkItem href="/">cases</LinkItem>
+                <LinkItem href="/">about</LinkItem>
                 <LinkItem href="/">expirience</LinkItem>
             </LinkWrapper>
         </Root>

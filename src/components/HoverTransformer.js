@@ -49,7 +49,7 @@ const PositionLabel = (props) => {
 
 const HoverTransformer = props => {
     return (
-        <ReactCursorPosition>
+        <ReactCursorPosition className={props.className} >
             <PositionLabel>
                 {props.children}
             </PositionLabel>
