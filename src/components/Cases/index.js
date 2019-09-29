@@ -3,6 +3,10 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import Brick from './Brick'
 import CaseThump from './CaseThump'
+import img1 from '../../graphics/img1.jpg'
+import img2 from '../../graphics/img2.jpg'
+import img3 from '../../graphics/img3.jpg'
+import img4 from '../../graphics/img4.jpg'
 
 
 const B = styled(Brick)`
@@ -94,6 +98,44 @@ export default class index extends Component {
     state = {
         chosenProject: -1,
         projectOpened: false,
+        cases: [
+            {
+                title: 'something', 
+                image: img1,
+            },
+            {
+                title: 'hmm', 
+                image: img3,
+            },
+            {
+                title: 'jaja', 
+                image: img4,
+            },
+            {
+                title: 'noget', 
+                image: img2,
+            },
+            {
+                title: 'gode sager', 
+                image: img1,
+            },
+            {
+                title: 'igen', 
+                image: img2,
+            },
+            {
+                title: 'something', 
+                image: img3,
+            },
+            {
+                title: 'igen', 
+                image: img4,
+            },
+            {
+                title: 'something', 
+                image: img1,
+            },
+        ]
     }
 
     openProject(index){
@@ -102,15 +144,6 @@ export default class index extends Component {
 
     
     render() {
-        const cases = [
-            'heyson1',
-            'heyson2',
-            'heyson3',
-            'heyson4',
-            'heyson5',
-            'heyson6',
-            'heyson7',
-        ]
 
         const {chosenProject, projectOpened} = this.state;
         
@@ -120,7 +153,7 @@ export default class index extends Component {
             projectIndex: -1,
             getProject: () => {
                 p.projectIndex++
-                return {case: cases[p.projectIndex], index: p.projectIndex}
+                return {case: this.state.cases[p.projectIndex], index: p.projectIndex}
             },
             tileIndex: -1,
             getTileIndex: () => {

@@ -1,6 +1,7 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
+import Fade from 'react-reveal/Fade'
 
 const Root = styled.div`
     position: relative;
@@ -48,20 +49,37 @@ const Root = styled.div`
 `
 
 const Content = styled.div`
-    position: absolute;
-    top:5px;
-    bottom:5px;
-    left:5px;
-    right:5px;
-    /* filter: blur(10px); */
-
+    ${props => props.db && css`
+        position: absolute;
+        top:5px;
+        bottom:5px;
+        left:${props => props.theme.spacing(4)};
+        right:5px;
+        display: flex;
+        align-items: center;
+        font-weight:bold;
+        color: black;
+        font-size: 30px;
+    `}
 `
+
+const Title = styled.h2`
+    
+`
+
 
 const Brick = props => {
     const tileIndex = props.getTileIndex()
     return (
-        <Root className={props.className} db={props.db} projectOpened={props.projectOpened} i={tileIndex}>
-            <Content>
+        <Root   
+            className={props.className} 
+            db={props.db} 
+            projectOpened={props.projectOpened} 
+            i={tileIndex}>
+            <Content db={props.db}>
+                {props.db && <Title>
+                    cases
+                </Title>}
             </Content>
         </Root>
     )
