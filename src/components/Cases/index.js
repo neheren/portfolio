@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 import Brick from './Brick'
 import CaseThump from './CaseThump'
 import img1 from '../../graphics/img1.jpg'
-import img2 from '../../graphics/img2.jpg'
 import img3 from '../../graphics/img3.jpg'
 import img4 from '../../graphics/img4.jpg'
 
@@ -113,7 +112,7 @@ export default class index extends Component {
             },
             {
                 title: 'noget', 
-                image: img2,
+                image: img1,
             },
             {
                 title: 'gode sager', 
@@ -121,7 +120,7 @@ export default class index extends Component {
             },
             {
                 title: 'igen', 
-                image: img2,
+                image: img1,
             },
             {
                 title: 'something', 
