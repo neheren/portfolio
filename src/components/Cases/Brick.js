@@ -12,14 +12,15 @@ const Root = styled.div`
     z-index: 1500;
     @keyframes moveOut {
         0% {
-            transform: perspective(1000px) rotateX(0deg) rotateY(0) translateZ(0); 
+            transform: perspective(1000px) rotateX(0deg) rotateY(0) scale(1);; 
         }
-
-        30% {
-            transform: perspective(1000px) rotateX(0deg) rotateY(30deg) translateZ(0); 
-        }
+        /* 10% {
+            transform: perspective(1000px) rotateX(0deg) rotateY(0) scale(0.8);
+        } */
         100% {
-            transform: perspective(1000px) rotateX(0deg) rotateY(30deg) translateZ(150vw);
+            /* outline: 5px solid black; */
+            transform: perspective(1000px) rotateX(0) rotateY(0) scale(0.90);
+            /* transform: scale(0.2); */
         }
     }
 
@@ -42,7 +43,7 @@ const Root = styled.div`
         transform-style: preserve-3d; 
         /* transition: all 1s cubic-bezier(0.19, 1, 0.22, 1); */
         /* transform: perspective(2000px) rotateX(0deg) rotateY(90deg) translateZ(1000px);  */
-        animation: moveOut ${0.2 + (props.i / 100)}s forwards cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        animation: moveOut 0.5s forwards cubic-bezier(0.77, 0, 0.175, 1);
     `}
 `
 

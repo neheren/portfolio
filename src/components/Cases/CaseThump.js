@@ -67,26 +67,30 @@ const HoverTransformerWrapper = styled(HoverTransformer)`
         transform: translateZ(0px) scale(0.90);
         /* transform: scale(0.95); */
     }
+    :active {
+        transform: translateZ(0px) scale(0.85);
+    }
 `
 
 const CaseThump = (props) => {
+    const project = props.getProject()
     return (
         <HoverTransformerWrapper className={props.className} >
             {props.big && <Arrow src={arrow}/> }
             {props.big && <Title> <b>latest</b> project</Title> }
             <AniLink 
-                onClick={props.openProject()}
-                paintDrip
-                bg="white"
+                onClick={props.openProject(project.index)}
+                cover
+                bg="#EFEFEF"
                 color="white"
                 direction="down"
                 delay={5}
                 entry={{
                     delay: 0.5
                 }}
-                duration={0.5}
+                duration={1}
                 to="/about">
-                <Root className={props.className} >
+                <Root className={props.className}>
                     <Content>
                     </Content>
                 </Root>
