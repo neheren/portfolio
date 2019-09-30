@@ -56,32 +56,6 @@ const Root = styled.div`
     }
 `
 
-const GradiantBG = styled.div`
-    margin-top: calc(-100vw / 10 * 4);
-    padding-top: calc(100vw / 10 * 4);
-
-    @media ${props => props.theme.media.lg} {
-        margin-top: calc(-100vw / 8 * 3);
-        padding-top: calc(100vw / 8 * 3);
-    }
-    @media ${props => props.theme.media.md} {
-        margin-top: calc(-100vw / 6 * 3 - 2px);
-        padding-top: calc(100vw / 6 * 3 - 2px);
-    }
-    @media ${props => props.theme.media.sm} {
-        margin-top: calc(-100vw / 2 * 3 - 2px);
-        padding-top: calc(100vw / 2 * 3 - 2px);
-        grid-template-columns: repeat(2, 1fr);
-    }
-    width: 100%;
-    height: 200vh;
-    background-image: linear-gradient(0deg,#FF1570 0% ,#E94700 calc(100% - 100vw / 10), rgba(1,1,1,0) );
-`
-
-const GradiantBGWrapper = styled.div`
-    background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
-
-`
 {/* <B lg/> <B db/>         <B sm b/><B md b/> <B sm b/> <B sm/> <B sm/> <B md/> <B lg b/>
 <B lg/> <B md/> <B sm/> <B sm/> <B/> <B/>    <B sm/> <B sm/> <B md/> <B lg/>
 <B lg/> <B md/> <C big/>        <C/> <C/>    <C/>    <C/>    <B md/> <B lg/>
@@ -156,9 +130,7 @@ class OuterWork extends Component {
                         tiles
                     }
                 </Root>
-                <GradiantBGWrapper>
-                    <GradiantBG>Hey!</GradiantBG>
-                </GradiantBGWrapper>
+
             </>
         )
     }

@@ -2,6 +2,7 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import Fade from 'react-reveal/Fade'
+import HoverTransformer from '../HoverTransformer';
 
 const Root = styled.div`
     position: relative;
@@ -76,11 +77,11 @@ const Brick = props => {
             db={props.db} 
             projectOpened={props.projectOpened} 
             i={tileIndex}>
-            <Content db={props.db}>
-                {props.db && <Title>
-                    cases
-                </Title>}
-            </Content>
+                <Content db={props.db}>
+                        {props.db && <Title>
+                            cases
+                        </Title>}
+                </Content>
         </Root>
     )
 }

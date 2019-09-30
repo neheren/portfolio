@@ -61,7 +61,6 @@ const Title = styled.h3`
         bottom: 25px;
         font-size: 25px;
         filter: drop-shadow(0 0 10px rgba(0,0,0, 0.4));
-
     ` : css`
         left: 15px;
         bottom: 10px;
