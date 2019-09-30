@@ -75,7 +75,7 @@ const GradiantBG = styled.div`
     }
     width: 100%;
     height: 200vh;
-    background-image: linear-gradient(0deg,#FF1570 0% ,#E94700 calc(100% - 100vw / 10), rgba(1,1,1,0) );
+    background-image: linear-gradient(0deg,#FF1570 0% ,#E94700 calc(100% - 100vw / 8), rgba(1,1,1,0) );
 `
 
 const GradiantBGWrapper = styled.div`
