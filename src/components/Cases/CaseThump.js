@@ -12,6 +12,7 @@ const Root = styled.div`
     overflow:hidden;
     background: url(${props => props.image});
     background-size:cover;  
+    background-position: center;
     color: white;
     font-weight: bolder;
 
@@ -80,7 +81,6 @@ const HoverTransformerWrapper = styled(HoverTransformer)`
     cursor: pointer;
     :hover{
         transform: translateZ(0px) scale(0.90);
-        /* transform: scale(0.95); */
         ${Title}{
             opacity: 1 !important;
         }
@@ -96,7 +96,6 @@ const HoverTransformerWrapper = styled(HoverTransformer)`
 
 const CaseThump = (props) => {
     const project = props.getProject()
-    console.log({pjrt:project.case})
     return (
         <HoverTransformerWrapper className={props.className} >
             <Arrow src={arrow} big={props.big} /> 

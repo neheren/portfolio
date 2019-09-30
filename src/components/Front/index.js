@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import bg from '../../graphics/thump.png'
 import slytLogo from '../../graphics/slyt.svg'
+import arrowDown from '../../graphics/downArrow.svg'
 import Menu from '../Menu'
 import Links from './Links'
 import Copyright from '../Copyright'
@@ -65,6 +66,29 @@ const CopyrightWrapper = styled.div`
     justify-self: center;
 `
 
+const ArrowDown = styled.img`
+    cursor: pointer;
+    @keyframes hoverfx {
+        0%{
+            transform:translateY(-5px);
+        }
+        50%{
+            transform:translateY(5px);
+        }
+        100%{
+            transform:translateY(-5px);
+        }
+    }
+
+    justify-self: center;
+    align-self: center;
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    width: 20px;
+    animation: hoverfx 2s infinite cubic-bezier(0.65, 0.05, 0.36, 1);
+     
+`
+
 const mousePerspective = () => {
 
 }
@@ -87,6 +111,7 @@ const front = props => {
                         <Logo src={slytLogo} />
                 </HoverTransformer>
             </Video>
+             <ArrowDown src={arrowDown}/>
         </Root>
     )
 }
