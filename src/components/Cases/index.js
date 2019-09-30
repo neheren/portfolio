@@ -6,6 +6,7 @@ import CaseThump from './CaseThump'
 import img1 from '../../graphics/img1.jpg'
 import img3 from '../../graphics/img3.jpg'
 import img4 from '../../graphics/img4.jpg'
+import { graphql, StaticQuery  } from 'gatsby'
 
 
 const B = styled(Brick)`
@@ -88,10 +89,14 @@ const GradiantBG = styled.div`
 <B lg b/> <B md b/> <B sm /> <B sm b/> <B sm b/> <B b/> <B sm b/> <B sm b/> <B md b/> <B lg b/> */}
 
 
-
-export default class index extends Component {
+class OuterWork extends Component {
     static propTypes = {
-        // prop: PropTypes
+        work: PropTypes.any,
+    }
+
+    constructor(data) {
+        super(data);
+        
     }
 
     state = {
@@ -143,6 +148,13 @@ export default class index extends Component {
 
     
     render() {
+        console.log({works: this.props.data.allDatoCmsWork.edges[0].node})
+
+        const workArray = this.props.data.allDatoCmsWork.edges.map((workNode) => {
+            const {title, slug, coverImage} = workNode.node
+            return {title, slug, coverImage}
+        })
+
 
         const {chosenProject, projectOpened} = this.state;
         
@@ -152,7 +164,7 @@ export default class index extends Component {
             projectIndex: -1,
             getProject: () => {
                 p.projectIndex++
-                return {case: this.state.cases[p.projectIndex], index: p.projectIndex}
+                return {case: workArray[p.projectIndex], index: p.projectIndex}
             },
             tileIndex: -1,
             getTileIndex: () => {
@@ -185,3 +197,30 @@ export default class index extends Component {
         )
     }
 }
+
+export default () => (
+    <StaticQuery
+        query ={graphql`
+          query OuterWorkQuery {
+            allDatoCmsWork(sort: { fields: [position], order: ASC }) {
+              edges {
+                node {
+                  id
+                  title
+                  slug
+                  excerpt
+                  coverImage {
+                    fluid(maxWidth: 450, imgixParams: { fm: "jpg", auto: "compress" }) {
+                      ...GatsbyDatoCmsSizes
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `}
+        render={(data) => {
+            return <OuterWork data={data} />
+        }}
+    />
+)

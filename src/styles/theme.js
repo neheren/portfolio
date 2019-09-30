@@ -71,8 +71,8 @@ const theme = {
   breakpoints: {
     sm: '578px',
     md: '768px',
-    lg: '992px',
-    xl: '1200px'
+    lg: '1092px',
+    xl: '1300px'
   },
   palette: {
     light: '#ffffff',

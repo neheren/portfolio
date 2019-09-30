@@ -20,7 +20,7 @@ const Root = styled.div`
         } */
         100% {
             /* outline: 5px solid black; */
-            transform: perspective(1000px) rotateX(0) rotateY(0) scale(0.90);
+            transform: perspective(1000px) rotateX(50deg) rotateY(0) scale(0.90);
             /* transform: scale(0.2); */
         }
     }

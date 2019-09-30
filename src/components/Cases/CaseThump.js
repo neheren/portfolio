@@ -126,9 +126,9 @@ const CaseThump = (props) => {
                 }}
                 duration={1}
                 
-                to="/about">
+                to={"/cases/" + project.case.slug}>
                     
-                <Root className={props.className} image={project && project.case.image || null}>
+                <Root className={props.className} image={project && project.case.coverImage.fluid.src || null}>
                     <Content>
                     </Content>
                 </Root>
