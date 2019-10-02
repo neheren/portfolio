@@ -21,9 +21,13 @@ const Content = styled.div`
 `
 
 const Image = styled(Img)`
+    border: 5px solid white;
     grid-row: 1 / -1;
     width: 100%;
     padding-bottom: 100%;
+    img{
+        object-position: top center !important;
+    }
     div{
         padding-bottom:0 !important;
     }
@@ -64,7 +68,6 @@ const Header = styled.h2`
 const Right = styled.div``
 
 export default (props) => {
-    console.log(props.data)
     return(
         <GradiantBGWrapper>
             <GradiantBG>

@@ -11,7 +11,7 @@ const IndexPage = ({ data }) => {
   return(
   <ThemeProvider theme={theme}>
     <Menu />
-    <Front />
+    <Front videoLink={data.home.modelVideo.url} />
     <Cases />
     <About data={data.about} />
   </ThemeProvider>
@@ -21,6 +21,12 @@ export default IndexPage
 
 export const query = graphql`
   query IndexQuery {
+    home: datoCmsHome {
+      modelVideo {
+        url
+      }
+    }
+
     about: datoCmsAboutPage {
       title
       subtitle

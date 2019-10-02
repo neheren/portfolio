@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import bg from '../../graphics/thump.png'
 import slytLogo from '../../graphics/slyt.svg'
@@ -27,7 +27,6 @@ const Video = styled.div`
     overflow: hidden;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
-    background-image: url(${bg});
     background-size: cover;
     background-position: center;
     display: flex;
@@ -93,7 +92,7 @@ const scrollDown = () => {
     })
 }
 
-const front = () => {
+const front = (props) => {
     return (
         <Root>
             <MenuWrapper>
@@ -103,10 +102,8 @@ const front = () => {
             </CopyrightWrapper>
             <Links/>
             <Video>
-                <HoverTransformer style={{height: '100%', width: '100%'}}>
-                        <InlineVideo style={{transform: 'translateZ(150px)'}} />
-                        <Logo src={slytLogo} />
-                </HoverTransformer>
+                        <InlineVideo videoLink={props.videoLink} style={{transform: 'translateZ(150px)'}} />
+                        {/* <Logo src={slytLogo} /> */}
             </Video>
              <ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
         </Root>
@@ -114,7 +111,7 @@ const front = () => {
 }
 
 front.propTypes = {
-
+    videoLink: PropTypes.string,
 }
 
 export default front
