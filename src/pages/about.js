@@ -28,7 +28,7 @@ const About = ({ data: { about } }) => (
 export default About
 
 export const query = graphql`
-  query AboutQuery {
+  query AboutQuery1 {
     about: datoCmsAboutPage {
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

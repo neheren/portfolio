@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import Brick from './Brick'
 import CaseThump from './CaseThump'
-import img1 from '../../graphics/img1.jpg'
-import img3 from '../../graphics/img3.jpg'
-import img4 from '../../graphics/img4.jpg'
 import { graphql, StaticQuery  } from 'gatsby'
 
 
@@ -37,6 +34,7 @@ const C = styled(CaseThump)`
 ` 
 
 const Root = styled.div`
+    background-color: rgba(1, 0, 0, 0.5);
     overflow:hidden;
     background: #EFEFEF;
     padding-top: 1px;
@@ -51,55 +49,12 @@ const Root = styled.div`
     @media ${props => props.theme.media.sm} {
         grid-template-columns: repeat(2, 1fr);
     }
-    ${B} {
-        /* background:red; */
-    }
 `
-
-const GradiantBG = styled.div`
-    margin-top: calc(-100vw / 10 * 4);
-    padding-top: calc(100vw / 10 * 4);
-
-    @media ${props => props.theme.media.lg} {
-        margin-top: calc(-100vw / 8 * 3);
-        padding-top: calc(100vw / 8 * 3);
-    }
-    @media ${props => props.theme.media.md} {
-        margin-top: calc(-100vw / 6 * 3 - 2px);
-        padding-top: calc(100vw / 6 * 3 - 2px);
-    }
-    @media ${props => props.theme.media.sm} {
-        margin-top: calc(-100vw / 2 * 3 - 2px);
-        padding-top: calc(100vw / 2 * 3 - 2px);
-        grid-template-columns: repeat(2, 1fr);
-    }
-    width: 100%;
-    height: 200vh;
-    background-image: linear-gradient(0deg,#FF1570 0% ,#E94700 calc(100% - 100vw / 8), rgba(1,1,1,0) );
-`
-
-const GradiantBGWrapper = styled.div`
-    background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
-
-`
-{/* <B lg/> <B db/>         <B sm b/><B md b/> <B sm b/> <B sm/> <B sm/> <B md/> <B lg b/>
-<B lg/> <B md/> <B sm/> <B sm/> <B/> <B/>    <B sm/> <B sm/> <B md/> <B lg/>
-<B lg/> <B md/> <C big/>        <C/> <C/>    <C/>    <C/>    <B md/> <B lg/>
-<B lg/> <B md/>                 <C b/> <C/>    <C/>    <C/>    <B md/> <B lg/>
-<B lg/> <B md/> <B sm/> <B sm/> <B sm/> <B/> <B sm/> <B sm/> <B md/> <B lg/>
-<B lg/> <B md/> <B sm/> <B sm/> <B sm/> <B/> <B sm/> <B sm/> <B md/> <B lg b/>
-<B lg b/> <B md/> <B sm/> <B sm/> <B sm b/> <B/> <B sm/> <B sm b/> <B md b/> <B lg b/>
-<B lg b/> <B md b/> <B sm /> <B sm b/> <B sm b/> <B b/> <B sm b/> <B sm b/> <B md b/> <B lg b/> */}
 
 
 class OuterWork extends Component {
     static propTypes = {
         work: PropTypes.any,
-    }
-
-    constructor(data) {
-        super(data);
-        
     }
 
     state = {
@@ -110,15 +65,12 @@ class OuterWork extends Component {
     openProject(index){
         this.setState({projectOpened: !this.state.projectOpened, chosenProject: index})
     }
-
     
     render() {
-
         const workArray = this.props.data.allDatoCmsWork.edges.map((workNode) => {
             const {title, slug, coverImage} = workNode.node
             return {title, slug, coverImage}
         })
-
 
         const {chosenProject, projectOpened} = this.state;
         
@@ -156,9 +108,7 @@ class OuterWork extends Component {
                         tiles
                     }
                 </Root>
-                <GradiantBGWrapper>
-                    <GradiantBG>Hey!</GradiantBG>
-                </GradiantBGWrapper>
+
             </>
         )
     }

@@ -1,6 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+// import PropTypes from 'prop-types'
+// import styled, { css } from 'styled-components'
 import ReactCursorPosition from 'react-cursor-position'
 
 
@@ -8,7 +8,6 @@ const PositionLabel = (props) => {
     const {
       detectedEnvironment: {
         isMouseDetected = false,
-        isTouchDetected = false
       } = {},
       elementDimensions: {
         width = 0,

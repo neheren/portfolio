@@ -61,7 +61,6 @@ const Title = styled.h3`
         bottom: 25px;
         font-size: 25px;
         filter: drop-shadow(0 0 10px rgba(0,0,0, 0.4));
-
     ` : css`
         left: 15px;
         bottom: 10px;
@@ -77,10 +76,10 @@ const Title = styled.h3`
 ` 
 
 const HoverTransformerWrapper = styled(HoverTransformer)`
-    transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
     cursor: pointer;
+        transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
     :hover{
-        transform: translateZ(0px) scale(0.90);
+        transform: translateZ(0px) scale3d(0.90, 0.90, 0.90);
         ${Title}{
             opacity: 1 !important;
         }
@@ -89,7 +88,7 @@ const HoverTransformerWrapper = styled(HoverTransformer)`
         }
     }
     :active {
-        transform: translateZ(0px) scale(0.85);
+        transform: translateZ(0px) scale3d(0.85, 0.85, 0.85);
     }
 `
 
@@ -127,7 +126,7 @@ const CaseThump = (props) => {
                 
                 to={"/cases/" + project.case.slug}>
                     
-                <Root className={props.className} image={project && project.case.coverImage.fluid.src || null}>
+                <Root className={props.className} image={(project && project.case.coverImage.fluid.src) || null}>
                     <Content>
                     </Content>
                 </Root>

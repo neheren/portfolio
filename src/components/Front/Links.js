@@ -5,6 +5,8 @@ const Root = styled.div`
     height: 100%;
     display: flex;
     align-items:center;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
 `
 
 const LinkWrapper = styled.div`

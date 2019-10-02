@@ -1,10 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import bg from '../../graphics/thump.png'
 import slytLogo from '../../graphics/slyt.svg'
 import arrowDown from '../../graphics/downArrow.svg'
-import Menu from '../Menu'
+// import Menu from '../Menu'
 import Links from './Links'
 import Copyright from '../Copyright'
 import HoverTransformer from '../HoverTransformer'
@@ -36,15 +36,11 @@ const Video = styled.div`
 `
 
 const MenuWrapper = styled.div`
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
+    margin: ${props => props.theme.spacing(4)};
     justify-self: center;
     align-self: center;
 `
 
-const Center = styled.div`
-    height: 100%;
-`
 
 const Logo = styled.img`
     padding: 50px;
@@ -85,25 +81,26 @@ const ArrowDown = styled.img`
     grid-column: 2 / 3;
     grid-row: 3 / 4;
     width: 20px;
+    padding: ${props => props.theme.spacing(1, 2)};
     animation: hoverfx 2s infinite cubic-bezier(0.65, 0.05, 0.36, 1);
-     
+    
 `
 
-const mousePerspective = () => {
-
+const scrollDown = () => {
+    window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth'
+    })
 }
 
-
-
-const front = props => {
+const front = () => {
     return (
         <Root>
+            <MenuWrapper>
+            </MenuWrapper>
             <CopyrightWrapper>
                 <Copyright />
             </CopyrightWrapper>
-            <MenuWrapper>
-                <Menu />
-            </MenuWrapper>
             <Links/>
             <Video>
                 <HoverTransformer style={{height: '100%', width: '100%'}}>
@@ -111,7 +108,7 @@ const front = props => {
                         <Logo src={slytLogo} />
                 </HoverTransformer>
             </Video>
-             <ArrowDown src={arrowDown}/>
+             <ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
         </Root>
     )
 }
