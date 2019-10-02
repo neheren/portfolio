@@ -102,8 +102,10 @@ const front = (props) => {
             </CopyrightWrapper>
             <Links/>
             <Video>
+                <HoverTransformer style={{height: '100%', width: '100%'}}>
                         <InlineVideo videoLink={props.videoLink} style={{transform: 'translateZ(150px)'}} />
-                        {/* <Logo src={slytLogo} /> */}
+                        <Logo src={slytLogo} />
+                </HoverTransformer>
             </Video>
              <ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
         </Root>
