@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import MenuOverlay from './MenuOverlay';
+import { window } from 'global'
 
 const BURGER_STATES = {
     ARROW: 'ARROW',

@@ -2,9 +2,8 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import styled from 'styled-components';
 import { Fade } from 'react-reveal';
-import img from '../../graphics/img1.jpg'
 import Container from '../Shared/Container';
-import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 const Root = styled.div`
     padding: ${props => props.theme.spacing(16, 0)};
@@ -21,12 +20,13 @@ const Content = styled.div`
     color: white;
 `
 
-const Image = styled.div`
+const Image = styled(Img)`
     grid-row: 1 / -1;
     width: 100%;
     padding-bottom: 100%;
-    background-image: url(${props => props.img});
-    background-size: cover;
+    div{
+        padding-bottom:0 !important;
+    }
 `
 
 const GradiantBG = styled.div`
@@ -52,41 +52,36 @@ const GradiantBG = styled.div`
 
 const GradiantBGWrapper = styled.div`
     background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
-
 `
 
-const Desc = styled.p`
-`
+const Desc = styled.div``
 
 const Header = styled.h2`
     font-size: 30px;
     font-weight: bolder;
 `
 
-const Right = styled.div`
-    /* grid-column: 2 / 3; */
-`
+const Right = styled.div``
 
-function About(data) {
-    console.log({data})
-    return (
+export default (props) => {
+    console.log(props.data)
+    return(
         <GradiantBGWrapper>
             <GradiantBG>
                 <Root>
                     <Container>
                         <Content>
-                            <Image img={img} />
+                            <Image fluid={props.data.photo.fluid} />
                             <Right>
                                 <Header>
-                                    <Fade bottom >
-                                        about me
+                                    <Fade bottom>
+                                        {props.data.title}
                                     </Fade>
                                 </Header>
-                                <Desc>
-                                    <Fade bottom>
-                                        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
-                                    </Fade>
-                                </Desc>
+                                <Fade bottom>
+                                    <Desc dangerouslySetInnerHTML={{__html: props.data.bioNode.childMarkdownRemark.html}}>
+                                    </Desc>
+                                </Fade>
                             </Right>
                         </Content>
                     </Container>
@@ -96,30 +91,3 @@ function About(data) {
     )
 }
 
-About.propTypes = {
-
-}
-
-export default About
-
-export const query = graphql`
-  query AboutQuery {
-    about: datoCmsAboutPage {
-      seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
-      }
-      title
-      subtitle
-      photo {
-        fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
-          ...GatsbyDatoCmsSizes
-        }
-      }
-      bioNode {
-        childMarkdownRemark {
-          html
-        }
-      }
-    }
-  }
-`

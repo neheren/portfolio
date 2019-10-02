@@ -9,6 +9,7 @@ import Links from './Links'
 import Copyright from '../Copyright'
 import HoverTransformer from '../HoverTransformer'
 import InlineVideo from './Video'
+import { window } from 'global'
 
 const Root = styled.div`
     display: grid;
