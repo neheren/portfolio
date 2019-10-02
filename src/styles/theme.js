@@ -70,8 +70,8 @@ const theme = {
   },
   breakpoints: {
     sm: '578px',
-    md: '768px',
-    lg: '1092px',
+    md: '868px',
+    lg: '1192px',
     xl: '1300px'
   },
   palette: {
