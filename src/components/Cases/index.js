@@ -97,7 +97,6 @@ class OuterWork extends Component {
         const {chosenProject, projectOpened} = this.state;
         
         const p = {
-            test: "yy",
             openProject: (index) => this.openProject.bind(this, index),
             projectIndex: -1,
             getProject: () => {

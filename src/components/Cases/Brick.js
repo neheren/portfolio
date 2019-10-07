@@ -16,13 +16,8 @@ const Root = styled.div`
         0% {
             transform: perspective(1000px) rotateX(0deg) rotateY(0) scale(1);; 
         }
-        /* 10% {
-            transform: perspective(1000px) rotateX(0deg) rotateY(0) scale(0.8);
-        } */
         100% {
-            /* outline: 5px solid black; */
             transform: perspective(1000px) rotateX(50deg) rotateY(0) scale(0.90);
-            /* transform: scale(0.2); */
         }
     }
 
@@ -64,9 +59,7 @@ const Content = styled.div`
     `}
 `
 
-const Title = styled.h2`
-    
-`
+const Title = styled.h2``
 
 
 const Brick = props => {
