@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import styled from 'styled-components';
-import { Fade } from 'react-reveal';
 
 const Root = styled.div`
     z-index: 2999;

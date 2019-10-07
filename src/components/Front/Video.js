@@ -1,16 +1,30 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
-import videoLink from '../../graphics/portfoliovideo.mp4'
+import PropTypes from 'prop-types'
+import styled, { css } from 'styled-components';
+
+const PlayerWrapper = styled.div`
+    ${props => props.overSized && css`
+        transform: translateX(-10%);
+    `}
+    width: 100%;
+    height: 100%;
+`
 
 function Video(props) {
+    const overSized = props.isProject || false;
+
     return (
-        <ReactPlayer playsinline loop height="120%" width="auto" url={videoLink} playing />
+        <PlayerWrapper overSized={overSized}>
+            <ReactPlayer loop muted playsinline playing height="100%" width={overSized ? "120%" : '100%'} url={props.videoLink}  />
+        </PlayerWrapper>
     )
 }
 
 Video.propTypes = {
-
+    videoLink: PropTypes.string,
+    isProject: PropTypes.bool,
+    overSized: PropTypes.bool,
 }
 
 export default Video
-

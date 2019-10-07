@@ -1,6 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+// import PropTypes from 'prop-types'
+// import styled, { css } from 'styled-components'
 import ReactCursorPosition from 'react-cursor-position'
 
 
@@ -8,7 +8,6 @@ const PositionLabel = (props) => {
     const {
       detectedEnvironment: {
         isMouseDetected = false,
-        isTouchDetected = false
       } = {},
       elementDimensions: {
         width = 0,
@@ -48,17 +47,19 @@ const PositionLabel = (props) => {
 
 
 const HoverTransformer = props => {
-    return (
-        <ReactCursorPosition className={props.className} >
-            <PositionLabel>
-                {props.children}
-            </PositionLabel>
-        </ReactCursorPosition>
-    )
+  let {disable, children} = props
+  disable = disable || false;
+  
+  return disable ? <>{children}</> : 
+    <ReactCursorPosition className={props.className} >
+          <PositionLabel>
+              {children}
+          </PositionLabel>
+    </ReactCursorPosition>
 }
 
 HoverTransformer.propTypes = {
-
+  
 }
 
 export default HoverTransformer

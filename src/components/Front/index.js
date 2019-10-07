@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import bg from '../../graphics/thump.png'
 import slytLogo from '../../graphics/slyt.svg'
 import arrowDown from '../../graphics/downArrow.svg'
-// import Menu from '../Menu'
 import Links from './Links'
 import Copyright from '../Copyright'
 import HoverTransformer from '../HoverTransformer'
@@ -27,7 +25,6 @@ const Video = styled.div`
     overflow: hidden;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
-    background-image: url(${bg});
     background-size: cover;
     background-position: center;
     display: flex;
@@ -41,9 +38,6 @@ const MenuWrapper = styled.div`
     align-self: center;
 `
 
-const Center = styled.div`
-    height: 100%;
-`
 
 const Logo = styled.img`
     padding: 50px;
@@ -96,7 +90,8 @@ const scrollDown = () => {
     })
 }
 
-const front = props => {
+const front = (props) => {
+    const { isProject } = props 
     return (
         <Root>
             <MenuWrapper>
@@ -105,10 +100,10 @@ const front = props => {
                 <Copyright />
             </CopyrightWrapper>
             <Links/>
-            <Video>
-                <HoverTransformer style={{height: '100%', width: '100%'}}>
-                    <InlineVideo style={{transform: 'translateZ(150px)'}} />
-                    <Logo src={slytLogo} />
+            <Video >
+                <HoverTransformer disable={!isProject} >
+                    <InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px)', transform: 'translateX(-10%)'}} />
+                    {isProject && <Logo src={slytLogo} />}
                 </HoverTransformer>
             </Video>
              <ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
@@ -117,7 +112,8 @@ const front = props => {
 }
 
 front.propTypes = {
-
+    videoLink: PropTypes.string,
+    isProject: PropTypes.bool,
 }
 
 export default front

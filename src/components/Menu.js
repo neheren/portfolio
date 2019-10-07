@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import MenuOverlay from './MenuOverlay';
+import { window } from 'global'
 
 const BURGER_STATES = {
     ARROW: 'ARROW',
     BURGER: 'BURGER',
     EXIT: 'EXIT',
 }
-
-const burgerList = [
-    BURGER_STATES.ARROW, BURGER_STATES.BURGER, BURGER_STATES.EXIT
-]
 
 const Burger = styled.div`
     width: ${props => props.theme.spacing(4)};
@@ -24,15 +21,6 @@ const Burger = styled.div`
     position: fixed;
     display: inline;
     z-index: 3000;
-`
-
-const MenuTrack = styled.div`
-    background: lightcyan;
-    position: absolute;
-    height: calc(100vh - ${props => props.theme.spacing(8)});
-    left: 0;
-    top:0;
-    width: ${props => props.theme.spacing(8)};
 `
 
 const Line = styled.div`
@@ -135,7 +123,7 @@ export default class Menu extends Component {
     }
     
     state = {
-        bgColor: 'black',
+        LineColor: 'black',
         burgerState: BURGER_STATES.ARROW,
         burgerIndex: 1,
     }
@@ -144,6 +132,10 @@ export default class Menu extends Component {
         this.setState({
             burgerState: window.pageYOffset > 5 ? BURGER_STATES.BURGER : BURGER_STATES.ARROW,
         })
+        this.setState({
+            LineColor: (window.pageYOffset > window.innerHeight * 2 || this.state.burgerState === BURGER_STATES.EXIT ? 'white' : 'black')
+        })
+
     }
 
     toggleCollapsed (){
@@ -153,16 +145,14 @@ export default class Menu extends Component {
     }
 
     render() {
-        console.log(this.state.bgColor)
-        const LineColor = (window.pageYOffset > window.innerHeight * 2 || this.state.burgerState === BURGER_STATES.EXIT ? 'white' : 'black')
         return (
             <>
             {this.state.burgerState === BURGER_STATES.EXIT && <MenuOverlay />}
             <Burger onClick={this.toggleCollapsed.bind(this)} burgerState={this.state.burgerState}>
-                <Line collapsed={this.state.collapsed} top burgerState={this.state.burgerState} bgColor={LineColor}></Line>
-                <Line collapsed={this.state.collapsed} bottom burgerState={this.state.burgerState} bgColor={LineColor}></Line>
-                <CrossPart collapsed={this.state.collapsed} burgerState={this.state.burgerState} bgColor={LineColor}/>
-                <CrossPart collapsed={this.state.collapsed} rev burgerState={this.state.burgerState} bgColor={LineColor}/>
+                <Line collapsed={this.state.collapsed} top burgerState={this.state.burgerState} bgColor={this.state.LineColor}></Line>
+                <Line collapsed={this.state.collapsed} bottom burgerState={this.state.burgerState} bgColor={this.state.LineColor}></Line>
+                <CrossPart collapsed={this.state.collapsed} burgerState={this.state.burgerState} bgColor={this.state.LineColor}/>
+                <CrossPart collapsed={this.state.collapsed} rev burgerState={this.state.burgerState} bgColor={this.state.LineColor}/>
             </Burger>
             </>
         )

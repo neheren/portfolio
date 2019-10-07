@@ -4,15 +4,13 @@ import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import Front from '../components/Front';
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import theme from '../styles/theme'
 
 export default ({ data }) => (
   <ThemeProvider theme={theme}>
     <article className="">
-      <Front>
-        
-      </Front>
+      <Front videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''} />
       <HelmetDatoCms seo={data.datoCmsWork.seoMetaTags} />
       <div className="sheet__inner">
         <h1 className="sheet__title">{data.datoCmsWork.title}</h1>
@@ -61,6 +59,13 @@ export const query = graphql`
         fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
           ...GatsbyDatoCmsSizes
         }
+      }
+      downloads {
+        link
+        title
+      }
+      video {
+        url
       }
     }
   }
