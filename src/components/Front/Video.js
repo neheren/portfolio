@@ -12,11 +12,11 @@ const PlayerWrapper = styled.div`
 `
 
 function Video(props) {
-    const overSized = props.isProject || false;
-
+    const overSized = (!props.isProject) || false;
+    const isProject = props.isProject || false;
     return (
         <PlayerWrapper overSized={overSized}>
-            <ReactPlayer loop muted playsinline playing height="100%" width={overSized ? "120%" : '100%'} url={props.videoLink}  />
+            <ReactPlayer loop={!isProject} controls={isProject} playsinline={isProject} playing height="100%" width={overSized ? "120%" : '100%'} url={props.videoLink}  />
         </PlayerWrapper>
     )
 }

@@ -11,7 +11,7 @@ const IndexPage = ({ data }) => {
   return(
   <ThemeProvider theme={theme}>
     <Menu />
-    <Front videoLink={data.home.modelVideo.url} isProject={true} />
+    <Front videoLink={data.home.modelVideo.url} isProject={false} />
     <Cases />
     <About data={data.about} />
   </ThemeProvider>

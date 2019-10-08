@@ -91,19 +91,19 @@ const scrollDown = () => {
 }
 
 const front = (props) => {
-    const { isProject } = props 
+    const { isProject } = props || false
     return (
         <Root>
             <MenuWrapper>
             </MenuWrapper>
             <CopyrightWrapper>
-                <Copyright />
+                {!isProject && <Copyright />}
             </CopyrightWrapper>
             <Links/>
             <Video >
-                <HoverTransformer disable={!isProject} >
+                <HoverTransformer disable={isProject} >
                     <InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px)', transform: 'translateX(-10%)'}} />
-                    {isProject && <Logo src={slytLogo} />}
+                    {!isProject && <Logo src={slytLogo} />}
                 </HoverTransformer>
             </Video>
              <ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
