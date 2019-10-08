@@ -16,9 +16,9 @@ const About = ({ data: { about } }) => (
         </div>
         <div
           className="sheet__body"
-          dangerouslySetInnerHTML={{
-            __html: about.bioNode.childMarkdownRemark.html,
-          }}
+          // dangerouslySetInnerHTML={{
+          //   __html: about.bioNode.childMarkdownRemark.html,
+          // }}
         />
       </div>
     </article>
