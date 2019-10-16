@@ -11,8 +11,8 @@ const IndexPage = ({data}) => (
 	<ThemeProvider theme={theme}>
 		<Menu/>
 		<Front videoLink={data.home.modelVideo.url} isProject={false}/>
-		{/*<Cases />*/}
-		<About data={data.about}/>
+		<Cases />
+		{/*<About data={data.about}/>*/}
 	</ThemeProvider>
 )
 
