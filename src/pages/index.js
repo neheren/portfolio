@@ -12,9 +12,11 @@ const IndexPage = ({data}) => (
 		<Menu/>
 		<Front videoLink={data.home.modelVideo.url} isProject={false}/>
 		<Cases />
-		{/*<About data={data.about}/>*/}
+		<About data={data.about}/>
 	</ThemeProvider>
 )
+
+IndexPage.propTypes = {}
 
 export default IndexPage
 

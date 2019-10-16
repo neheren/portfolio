@@ -25,13 +25,14 @@ const B = styled(Brick)`
             display: none;
         `}
     }
-` 
+`
+
 const C = styled(CaseThump)`
     ${props => props.big && css`
         grid-column: auto / span 2;
         grid-row: auto / span 2;
     `}
-` 
+`
 
 const Root = styled.div`
     background-color: rgba(1, 0, 0, 0.5);
@@ -51,7 +52,6 @@ const Root = styled.div`
     }
 `
 
-
 class OuterWork extends Component {
     static propTypes = {
         work: PropTypes.any,
@@ -65,7 +65,7 @@ class OuterWork extends Component {
     openProject(index){
         this.setState({projectOpened: !this.state.projectOpened, chosenProject: index})
     }
-    
+
     render() {
         const workArray = this.props.data.allDatoCmsWork.edges.map((workNode) => {
             const {title, slug, coverImage} = workNode.node
@@ -73,7 +73,7 @@ class OuterWork extends Component {
         })
 
         const {chosenProject, projectOpened} = this.state;
-        
+
         const p = {
             openProject: (index) => this.openProject.bind(this, index),
             projectIndex: -1,
@@ -89,7 +89,7 @@ class OuterWork extends Component {
             chosenProject,
             projectOpened,
         }
-        
+
         const tiles = [
             <B lg {...p} />,    <B db {...p} />,                        <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
             <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,       <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg {...p} />,
