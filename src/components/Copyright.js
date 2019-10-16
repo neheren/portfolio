@@ -28,17 +28,17 @@ const Bold = styled.div`
     font-weight: bolder;
 `
 const Copyright = () => {
-    return (
-        <Root>
-            <Rotation>
-                <Bold>
-                    nikolaj schlüter nielsen
-                </Bold>
-                designed and created by
-            </Rotation>
-            <Line></Line>
-        </Root>
-    )
+	return (
+		<Root>
+			<Rotation>
+				<Bold>
+					nikolaj schlüter nielsen
+				</Bold>
+				designed and created by
+			</Rotation>
+			<Line></Line>
+		</Root>
+	)
 }
 
 Copyright.propTypes = {

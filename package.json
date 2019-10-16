@@ -42,6 +42,7 @@
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\""
   },
   "devDependencies": {
+    "eslint-plugin-react": "^7.16.0",
     "prettier": "^1.17.0"
   }
 }

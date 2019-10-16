@@ -13,6 +13,10 @@ const Doc = styled.div`
   background-color: #EFEFEF;
 `
 
+const ModifiedSlider = styled(Slider)`
+
+`
+
 const Header = styled.h1`
   margin: ${props => props.theme.spacing(4, 0, 0, 0)};
   font-size: 80px;
