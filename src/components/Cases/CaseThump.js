@@ -10,7 +10,7 @@ const Root = styled.div`
     position: relative;
     width: 100%;
     overflow:hidden;
-    background: url(${props => props.image});
+    background: url(${props => props.image + '?w=400&h=400'});
     background-size:cover;  
     background-position: center;
     color: white;
@@ -21,6 +21,12 @@ const Root = styled.div`
         display: block;
         padding-bottom: 100%;
     }
+    filter: brightness(0.8) contrast(1.1);
+    transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
+   :hover {
+      filter: brightness(1);
+   }
+
 `
 
 const Content = styled.div`
@@ -29,8 +35,7 @@ const Content = styled.div`
     bottom:5px;
     left:5px;
     right:5px;
-    /* filter: blur(10px); */
-
+    
 `
 
 const Arrow = styled.img`
@@ -50,8 +55,9 @@ const Arrow = styled.img`
         filter: drop-shadow(0 0 5px rgba(0,0,0, 0.4));
 
     `}
-` 
+`
 const Title = styled.h3`
+    pointer-events: none;
     transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
     color: white;
     position: absolute;
@@ -60,20 +66,20 @@ const Title = styled.h3`
         left: 30px;
         bottom: 25px;
         font-size: 25px;
-        filter: drop-shadow(0 0 10px rgba(0,0,0, 0.4));
+        filter: drop-shadow(0 0 10px rgba(0,0,0, 0.9));
     ` : css`
         left: 15px;
         bottom: 10px;
         opacity: 0;
         font-size: 15px;
-        filter: drop-shadow(0 0 5px rgba(0,0,0, 0.4));
+        filter: drop-shadow(0 0 5px rgba(0,0,0, 0.9));
 
     `}
     transform: translateZ(40px);
     b {
         font-weight:bolder;
     }
-` 
+`
 
 const HoverTransformerWrapper = styled(HoverTransformer)`
     cursor: pointer;
@@ -97,14 +103,14 @@ const CaseThump = (props) => {
     const project = props.getProject()
     return (
         <HoverTransformerWrapper className={props.className} >
-            <Arrow src={arrow} big={props.big} /> 
+            <Arrow src={arrow} big={props.big} />
             <Title big={props.big}> {
                 props.big ? <>
                     <b>latest </b><span>project</span>
                 </> : <span>{project.case.title}</span>
                 }
             </Title>
-            <AniLink 
+            <AniLink
                 onClick={props.openProject(project.index)}
                 cover
                 bg={`
@@ -123,9 +129,9 @@ const CaseThump = (props) => {
                     delay: 0.5
                 }}
                 duration={1}
-                
+
                 to={"/cases/" + project.case.slug}>
-                    
+
                 <Root className={props.className} image={(project && project.case.coverImage.fluid.src) || null}>
                     <Content>
                     </Content>

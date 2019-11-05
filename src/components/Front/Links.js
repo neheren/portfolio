@@ -15,9 +15,9 @@ const LinkWrapper = styled.div`
 const LinkItem = styled.a`
     text-decoration: none;
     color: black;
-    font-weight: bold;
+    font-weight: ${props => props.first ? 'bold' : 'normal'};
     margin-left: ${props => props.first ? props.theme.spacing(2) : props.theme.spacing(8)};
-` 
+`
 
 function Links(props) {
     return (

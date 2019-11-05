@@ -38,7 +38,7 @@ const Root = styled.div`
         transform-style: preserve-3d; 
         /* transition: all 1s cubic-bezier(0.19, 1, 0.22, 1); */
         /* transform: perspective(2000px) rotateX(0deg) rotateY(90deg) translateZ(1000px);  */
-        animation: moveOut 0.5s forwards cubic-bezier(0.77, 0, 0.175, 1);
+//        animation: moveOut 0.5s forwards cubic-bezier(0.77, 0, 0.175, 1);
     `}
 `
 
@@ -63,22 +63,24 @@ const Title = styled.h2``
 const Brick = props => {
     const tileIndex = props.getTileIndex()
     return (
-        <Root   
-            className={props.className} 
-            db={props.db} 
-            projectOpened={props.projectOpened} 
+        <Root
+            className={props.className}
+            db={props.db}
+            projectOpened={props.projectOpened}
             i={tileIndex}>
-                <Content db={props.db}>
-                        {props.db && <Title>
-                            cases
-                        </Title>}
-                </Content>
+            { props.db &&
+            <Content db={props.db}>
+                <Title>
+                    cases
+                </Title>
+            </Content>
+            }
         </Root>
     )
 }
 
 Brick.propTypes = {
-    
+
 }
 
 export default Brick

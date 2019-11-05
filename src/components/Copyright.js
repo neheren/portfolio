@@ -9,6 +9,8 @@ const Root = styled.div`
     grid-template-columns: 1fr auto;
     grid-template-rows: 1fr;
     grid-gap: 5px;
+    font-size: 12px;
+    color: dimgrey;
 `
 
 const Rotation = styled.div`
@@ -19,12 +21,13 @@ const Rotation = styled.div`
 
 const Line = styled.div`
     height: 30px;
-    width: 2px;
-    background-color: black;
+    width: 1px;
+    background-color: dimgrey;
     align-self: end;
 `
 
 const Bold = styled.div`
+	color: black;
     font-weight: bolder;
 `
 const Copyright = () => {

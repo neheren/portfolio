@@ -31,14 +31,10 @@ export const query = graphql`
     about: datoCmsAboutPage {
       title
       subtitle
+      bio
       photo {
         fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
           ...GatsbyDatoCmsSizes
-        }
-      }
-      bioNode {
-        childMarkdownRemark {
-          html
         }
       }
     }

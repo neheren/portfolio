@@ -1,8 +1,8 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
-import styled from 'styled-components';
-import { Fade } from 'react-reveal';
-import Container from '../Shared/Container';
+import styled from 'styled-components'
+import { Fade } from 'react-reveal'
+import Container from '../Shared/Container'
 import Img from 'gatsby-image'
 
 const Root = styled.div`
@@ -51,7 +51,7 @@ const GradiantBG = styled.div`
         grid-template-columns: repeat(2, 1fr);
     }
     width: 100%;
-    background-image: linear-gradient(0deg,#FF1570 0% ,#E94700 calc(100% - 100vw / 10), rgba(1,1,1,0) );
+    background-image: linear-gradient(0deg,#FF1570 0% ,#e92d00 calc(100% - 100vw / 10), rgba(1,1,1,0) );
 `
 
 const GradiantBGWrapper = styled.div`
@@ -68,13 +68,14 @@ const Header = styled.h2`
 const Right = styled.div``
 
 export default (props) => {
-    return(
+    console.log({bio: props.data.bio})
+    return (
         <GradiantBGWrapper>
             <GradiantBG>
                 <Root>
                     <Container>
                         <Content>
-                            <Image fluid={props.data.photo.fluid} />
+                            <Image fluid={props.data.photo.fluid}/>
                             <Right>
                                 <Header>
                                     <Fade bottom>
@@ -82,8 +83,8 @@ export default (props) => {
                                     </Fade>
                                 </Header>
                                 <Fade bottom>
-                                    {/* <Desc dangerouslySetInnerHTML={{__html: props.data.bioNode.childMarkdownRemark.html}}>
-                                    </Desc> */}
+                                    <Desc dangerouslySetInnerHTML={{__html: props.data.bio}}>
+                                    </Desc>
                                 </Fade>
                             </Right>
                         </Content>

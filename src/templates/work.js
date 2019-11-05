@@ -6,8 +6,9 @@ import { graphql } from 'gatsby'
 import Front from '../components/Front';
 import styled, { ThemeProvider, css } from 'styled-components'
 import theme from '../styles/theme'
-import Container from '../components/Shared/Container';
+import Container from '../components/Shared/Container'
 import rectArrow from '../graphics/rect-arrow.svg'
+import TagName from './Work/Tag'
 
 const Doc = styled.div`
   background-color: #EFEFEF;
@@ -63,39 +64,48 @@ const SliderWrapped = styled(Slider)`
   }
 `
 
+
 export default ({ data }) => (
-  <ThemeProvider theme={theme}>
-    <Front isProject videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''} />
-    <HelmetDatoCms seo={data.datoCmsWork.seoMetaTags} />
-    <Doc>
-      <Container>
-        <Header>{data.datoCmsWork.title}</Header>
-        <Desc>{data.datoCmsWork.excerpt}</Desc>
-        <SliderWrapped
-          style={{height: '400px'}}
-          variableWidth 
-          // infinite={true} 
-          slidesToShow={2} 
-          nextArrow={<Arrow src={rectArrow} />} prevArrow={<Arrow src={rectArrow} reverse/>}>
-          {data.datoCmsWork.gallery.map(({ fluid }) => (
-            <ImageWrapper>
-              <Image alt={data.datoCmsWork.title} key={fluid.src} src={fluid.src}  />
-              smagen
-            </ImageWrapper>
-          ))}
-        </SliderWrapped>
-        <div
-          className="sheet__body"
-          dangerouslySetInnerHTML={{
-            __html: data.datoCmsWork.descriptionNode.childMarkdownRemark.html,
-          }}
-        />
-        {/* <div className="sheet__gallery">
+	<ThemeProvider theme={theme}>
+		<Front isProject videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''} />
+		<HelmetDatoCms seo={data.datoCmsWork.seoMetaTags} />
+		<Doc>
+			<Container>
+				<Header>
+					{data.datoCmsWork.title}
+				</Header>
+					{
+							data.datoCmsWork.tags.map((tag, i) => {
+									return <TagName key={i}>{tag.tagLine}</TagName>
+							})
+					}
+
+				<Desc>{data.datoCmsWork.excerpt}</Desc>
+				<SliderWrapped
+					style={{height: '400px'}}
+					variableWidth
+					// infinite={true}
+					slidesToShow={2}
+					nextArrow={<Arrow src={rectArrow} />} prevArrow={<Arrow src={rectArrow} reverse/>}>
+					{data.datoCmsWork.gallery.map(({ fluid }) => (
+						<ImageWrapper>
+							<Image alt={data.datoCmsWork.title} key={fluid.src} src={fluid.src}  />
+							smagen
+						</ImageWrapper>
+					))}
+				</SliderWrapped>
+				<div
+					className="sheet__body"
+					dangerouslySetInnerHTML={{
+						__html: data.datoCmsWork.descriptionNode.childMarkdownRemark.html,
+					}}
+				/>
+				{/* <div className="sheet__gallery">
           <Img fluid={data.datoCmsWork.coverImage.fluid} />
         </div> */}
-      </Container>
-    </Doc>
-  </ThemeProvider>
+			</Container>
+		</Doc>
+	</ThemeProvider>
 )
 
 export const query = graphql`
@@ -105,6 +115,9 @@ export const query = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
       title
+      tags {
+        tagLine
+      }
       excerpt
       gallery {
         fluid(maxWidth: 200, imgixParams: { fm: "jpg", auto: "compress" }) {

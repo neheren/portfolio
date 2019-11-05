@@ -38,7 +38,6 @@ const MenuWrapper = styled.div`
     align-self: center;
 `
 
-
 const Logo = styled.img`
     padding: 50px;
     transform: translateZ(150px);
@@ -80,7 +79,6 @@ const ArrowDown = styled.img`
     width: 20px;
     padding: ${props => props.theme.spacing(1, 2)};
     animation: hoverfx 2s infinite cubic-bezier(0.65, 0.05, 0.36, 1);
-    
 `
 
 const scrollDown = () => {
