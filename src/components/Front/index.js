@@ -14,7 +14,7 @@ const Root = styled.div`
     grid-template-columns: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
     grid-template-rows: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
     @media ${props => props.theme.media.md} {
-        grid-template-columns: ${props => props.theme.spacing(4)} auto ${props => props.theme.spacing(4)};
+        grid-template-columns: ${props => props.theme.spacing(0)} auto ${props => props.theme.spacing(0)};
         grid-template-rows: ${props => props.theme.spacing(4)} auto ${props => props.theme.spacing(4)};
     }
     height: 100vh;
@@ -82,36 +82,36 @@ const ArrowDown = styled.img`
 `
 
 const scrollDown = () => {
-    window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth'
-    })
+		window.scrollTo({
+				top: window.innerHeight,
+				behavior: 'smooth'
+		})
 }
 
 const front = (props) => {
-    const { isProject } = props || false
-    return (
-        <Root>
-            <MenuWrapper>
-            </MenuWrapper>
-            <CopyrightWrapper>
-                {!isProject && <Copyright />}
-            </CopyrightWrapper>
-            <Links/>
-            <Video >
-                <HoverTransformer disable={isProject} >
-                    <InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px)', transform: 'translateX(-10%)'}} />
-                    {!isProject && <Logo src={slytLogo} />}
-                </HoverTransformer>
-            </Video>
-             <ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
-        </Root>
-    )
+		const { isProject } = props || false
+		return (
+				<Root>
+						<MenuWrapper>
+						</MenuWrapper>
+						<CopyrightWrapper>
+								{!isProject && <Copyright />}
+						</CopyrightWrapper>
+						<Links/>
+						<Video >
+								<HoverTransformer disable={isProject} >
+										<InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px)', transform: 'translateX(-10%)'}} />
+										{!isProject && <Logo src={slytLogo} />}
+								</HoverTransformer>
+						</Video>
+						<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
+				</Root>
+		)
 }
 
 front.propTypes = {
-    videoLink: PropTypes.string,
-    isProject: PropTypes.bool,
+		videoLink: PropTypes.string,
+		isProject: PropTypes.bool,
 }
 
 export default front

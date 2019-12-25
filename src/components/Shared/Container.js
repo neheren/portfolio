@@ -30,9 +30,9 @@ const Container = ({
   children,
 }) => (
   <Root>
-    <Content>
-        {children}
-      </Content>
+		<Content>
+			{children}
+    </Content>
   </Root>
 )
 

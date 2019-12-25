@@ -49,8 +49,8 @@ const PositionLabel = (props) => {
 const HoverTransformer = props => {
   let {disable, children} = props
   disable = disable || false;
-  
-  return disable ? <>{children}</> : 
+
+  return disable ? <>{children}</> :
     <ReactCursorPosition className={props.className} >
           <PositionLabel>
               {children}
@@ -59,7 +59,7 @@ const HoverTransformer = props => {
 }
 
 HoverTransformer.propTypes = {
-  
+    className: Props.string,
 }
 
 export default HoverTransformer

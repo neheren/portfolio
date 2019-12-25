@@ -19,11 +19,11 @@ const LinkItem = styled.a`
     margin-left: ${props => props.first ? props.theme.spacing(2) : props.theme.spacing(8)};
 `
 
-function Links(props) {
+function Links() {
     return (
         <Root>
             <LinkWrapper>
-                <LinkItem href="/" first>video</LinkItem>
+                <LinkItem href="/" first>schlüter</LinkItem>
                 <LinkItem href="/">cases</LinkItem>
                 <LinkItem href="/">about</LinkItem>
                 <LinkItem href="/">expirience</LinkItem>
