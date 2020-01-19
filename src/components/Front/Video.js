@@ -5,19 +5,26 @@ import styled, { css } from 'styled-components'
 
 const PlayerWrapper = styled.div`
     ${props => props.overSized && css`
-        transform: translateX(-10%);
-    `}
-    width: 100%;
-    height: 100%;
+        transform: translateX(-10%)
+    `};
+    object-fit: cover;
 `
+
+const RP = styled (ReactPlayer)` 
+	* {
+		object-fit: cover;
+	}
+	width: 100%;
+	height: 100%;
+`
+
+
 
 function Video(props) {
     const overSized = (!props.isProject) || false;
     const isProject = props.isProject || false;
     return (
-        <PlayerWrapper overSized={overSized}>
-			<ReactPlayer loop={!isProject} controls={isProject} playsinline={isProject} playing height="100%" width={overSized ? '120%' : '100%'} url={props.videoLink}  />
-        </PlayerWrapper>
+		<RP loop={!isProject} muted height="inherit" width="inherit" controls={isProject} playsinline={isProject} playing url={props.videoLink}  />
     )
 }
 

@@ -6,15 +6,17 @@ import theme from '../styles/theme'
 import Cases from '../components/Cases'
 import Menu from '../components/Menu'
 import About from '../components/About/About'
+import {HelmetDatoCms} from 'gatsby-source-datocms'
 
-const IndexPage = ({data}) => (
-	<ThemeProvider theme={theme}>
+const IndexPage = ({data}) => {
+	return	<ThemeProvider theme={theme}>
 		<Menu/>
+		<HelmetDatoCms seo={data.seoMetaTags} />
 		<Front videoLink={data.home.modelVideo.url} isProject={false}/>
 		<Cases />
 		<About data={data.about}/>
 	</ThemeProvider>
-)
+}
 
 IndexPage.propTypes = {
 }
@@ -27,6 +29,14 @@ export const query = graphql`
       modelVideo {
         url
       }
+      seoSettings {
+        description
+        title
+        twitterCard
+      }
+	  seoMetaTags {
+	    tags
+       }
     }
 
     about: datoCmsAboutPage {
@@ -38,6 +48,7 @@ export const query = graphql`
           ...GatsbyDatoCmsSizes
         }
       }
+      
     }
   
     allDatoCmsWork(sort: { fields: [position], order: ASC }) {

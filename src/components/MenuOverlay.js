@@ -25,6 +25,8 @@ const Root = styled.div`
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
+    backdrop-filter: invert(1) grayscale(1);
+
 
 `
 

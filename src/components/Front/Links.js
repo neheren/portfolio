@@ -7,6 +7,8 @@ const Root = styled.div`
     align-items:center;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    transform: translate3d(10px, 10px, 50px);
+
 `
 
 const LinkWrapper = styled.div`
@@ -17,6 +19,14 @@ const LinkItem = styled.a`
     color: black;
     font-weight: ${props => props.first ? 'bold' : 'normal'};
     margin-left: ${props => props.first ? props.theme.spacing(2) : props.theme.spacing(8)};
+    @media ${props => props.theme.media.md} {
+    	margin-left: ${props => props.first ? props.theme.spacing(0) : props.theme.spacing(1.5)};
+    }
+    @media ${props => props.theme.media.sm} {
+        font-size: 12px;
+    }
+
+    
 `
 
 function Links() {

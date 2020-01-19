@@ -13,34 +13,53 @@ const Root = styled.div`
     background: #EFEFEF;
     grid-template-columns: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
     grid-template-rows: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
-    @media ${props => props.theme.media.md} {
-        grid-template-columns: ${props => props.theme.spacing(0)} auto ${props => props.theme.spacing(0)};
-        grid-template-rows: ${props => props.theme.spacing(4)} auto ${props => props.theme.spacing(4)};
-    }
     height: 100vh;
     position: relative;
+    @media ${props => props.theme.media.md} {
+	    grid-template-columns: ${props => props.theme.spacing(8)} auto ${props => props.theme.spacing(8)};
+	    grid-template-rows: ${props => props.theme.spacing(8)} auto ${props => props.theme.spacing(8)};
+
+	}
 `
 
 const Video = styled.div`
-    overflow: hidden;
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+	height: 100%;
+    width: 100%;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    @media ${props => props.theme.media.md} {
+    	grid-column: 1 / 4;
+    }
+`
+
+const Hover = styled(HoverTransformer)`
+    background: #EFEFEF;
+
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    height: 100%;
+    width: 100%;
+//    position: absolute;
+    display: flex;
+
 `
 
 const MenuWrapper = styled.div`
     margin: ${props => props.theme.spacing(4)};
     justify-self: center;
     align-self: center;
+    transform: translateZ(250px);
 `
 
 const Logo = styled.img`
     padding: 50px;
-    transform: translateZ(150px);
+    transform: translateZ(250px);
     width: 200px;
     position: absolute;
     left:0;
@@ -56,6 +75,9 @@ const CopyrightWrapper = styled.div`
     grid-row: 2 / 3;
     position: relative;
     justify-self: center;
+    @media ${props => props.theme.media.md} {
+    	display:none;
+    }
 `
 
 const ArrowDown = styled.img`
@@ -71,7 +93,6 @@ const ArrowDown = styled.img`
             transform:translateY(-5px);
         }
     }
-
     justify-self: center;
     align-self: center;
     grid-column: 2 / 3;
@@ -91,26 +112,27 @@ const scrollDown = () => {
 const front = (props) => {
 	const { isProject } = props || false
 	return (
-		<Root>
-			<MenuWrapper />
-			<CopyrightWrapper>
-				{!isProject && <Copyright />}
-			</CopyrightWrapper>
-			<Links/>
-			<Video>
-				<HoverTransformer disable={isProject} >
-					<InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px) translateX(-10%)'}} />
-					{!isProject && <Logo src={slytLogo} />}
-				</HoverTransformer>
-			</Video>
-			<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
-		</Root>
+
+		<Hover scale={10} disable={isProject} >
+			<Root>
+				<MenuWrapper />
+				<CopyrightWrapper>
+					{!isProject && <Copyright />}
+				</CopyrightWrapper>
+				<Links/>
+					<Video>
+						<InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px) translateX(-10%)'}} />
+						{!isProject && <Logo src={slytLogo} />}
+					</Video>
+				<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
+			</Root>
+		</Hover>
 	)
 }
 
 front.propTypes = {
-		videoLink: PropTypes.string,
-		isProject: PropTypes.bool,
+	videoLink: PropTypes.string,
+	isProject: PropTypes.bool,
 }
 
 export default front

@@ -67,18 +67,17 @@ const SliderWrapped = styled(Slider)`
 export default ({ data }) => (
 	<ThemeProvider theme={theme}>
 		<Front isProject videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''} />
-		<HelmetDatoCms seo={data.datoCmsWork.seoMetaTags} />
+		<HelmetDatoCms seo={data.datoCmsWork.seoMetaTagsseoMetaTags} />
 		<Doc>
 			<Container>
 				<Header>
 					{data.datoCmsWork.title}
 				</Header>
-					{
-							data.datoCmsWork.tags.map((tag, i) => {
-									return <TagName key={i}>{tag.tagLine}</TagName>
-							})
-					}
-
+				{
+					data.datoCmsWork.tags.map((tag, i) => {
+						return <TagName key={i}>{tag.tagLine}</TagName>
+					})
+				}
 				<Desc>{data.datoCmsWork.excerpt}</Desc>
 				<SliderWrapped
 					style={{height: '400px'}}
