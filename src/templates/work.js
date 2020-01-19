@@ -45,7 +45,6 @@ const Arrow = styled.img`
   height: 40px !important;
   width: 28px !important;
   margin: ${props => props.theme.spacing(0, -4)};
-  background-color: red;
   transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   &:hover{
     
