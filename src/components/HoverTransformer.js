@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 // import styled, { css } from 'styled-components'
 import ReactCursorPosition from 'react-cursor-position'
 
@@ -18,7 +18,7 @@ const PositionLabel = (props) => {
         x = 0,
         y = 0
       } = {}
-    } = props;
+    } = props
 
     let xPos = 0, yPos = 0, scale = 1
     if(!isPositionOutside && isMouseDetected){
@@ -33,7 +33,6 @@ const PositionLabel = (props) => {
           transform: (`perspective(2000px) rotateX(${yPos * scale}deg) rotateY(${xPos * scale}deg)`),
           willChange: 'transform',
           transformStyle: 'preserve-3d',
-
       } : {
         willChange: 'transform',
         transformStyle: 'preserve-3d',
@@ -59,7 +58,7 @@ const HoverTransformer = props => {
 }
 
 HoverTransformer.propTypes = {
-    className: Props.string,
+    className: PropTypes.string,
 }
 
 export default HoverTransformer

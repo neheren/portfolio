@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 const PlayerWrapper = styled.div`
     ${props => props.overSized && css`
@@ -16,7 +16,7 @@ function Video(props) {
     const isProject = props.isProject || false;
     return (
         <PlayerWrapper overSized={overSized}>
-            <ReactPlayer loop={!isProject} controls={isProject} playsinline={isProject} playing height="100%" width={overSized ? "120%" : '100%'} url={props.videoLink}  />
+			<ReactPlayer loop={!isProject} controls={isProject} playsinline={isProject} playing height="100%" width={overSized ? '120%' : '100%'} url={props.videoLink}  />
         </PlayerWrapper>
     )
 }

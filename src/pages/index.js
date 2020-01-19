@@ -16,7 +16,8 @@ const IndexPage = ({data}) => (
 	</ThemeProvider>
 )
 
-IndexPage.propTypes = {}
+IndexPage.propTypes = {
+}
 
 export default IndexPage
 

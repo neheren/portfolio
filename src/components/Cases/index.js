@@ -34,6 +34,10 @@ const C = styled(CaseThump)`
     `}
 `
 
+const A = styled(CaseThump)`
+    content: 'all projects';
+`
+
 const Root = styled.div`
     background-color: rgba(1, 0, 0, 0.5);
     overflow:hidden;
@@ -77,6 +81,7 @@ class OuterWork extends Component {
         const p = {
             openProject: (index) => this.openProject.bind(this, index),
             projectIndex: -1,
+            key: this.projectIndex,
             getProject: () => {
                 p.projectIndex++
                 return {case: workArray[p.projectIndex], index: p.projectIndex}
@@ -93,8 +98,8 @@ class OuterWork extends Component {
         const tiles = [
             <B lg {...p} />,    <B db {...p} />,                        <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
             <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,       <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg {...p} />,
-            <B lg {...p} />,    <B md {...p} />,    <C big {...p} />,                       <C {...p} />,       <C {...p} /> ,   <C {...p} />,    <C {...p} />,         <B md {...p} />,    <B lg {...p} />,
-            <B lg {...p} />,    <B md {...p} />,                                            <C b {...p} />,     <C {...p} />,    <C {...p} />,    <C {...p} />,         <B md {...p} />,    <B lg {...p} />,
+            <B lg {...p} />,    <B md {...p} />,    <C big {...p} />,                       <C {...p} />,       <C {...p} /> ,   <C {...p} />,    <A{...p} />,         <B md {...p} />,    <B lg {...p} />,
+            <B lg {...p} />,    <B md {...p} />,                                            <C b {...p} />,     <C {...p} />,    <C {...p} />,    <C no {...p} />,         <B md {...p} />,    <B lg {...p} />,
             <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg {...p} />,
             <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
             <B lg b {...p} />,  <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm b {...p} />,  <B {...p} />,    <B sm {...p} />, <B sm b {...p} />,    <B md b {...p} />,  <B lg b {...p} />,
@@ -104,7 +109,7 @@ class OuterWork extends Component {
             <>
                 <Root>
                     {
-                        tiles
+                        tiles//.map((tile, i) => <tile.type {...tile.props} key={i}/>)
                     }
                 </Root>
             </>

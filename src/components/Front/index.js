@@ -82,31 +82,30 @@ const ArrowDown = styled.img`
 `
 
 const scrollDown = () => {
-		window.scrollTo({
-				top: window.innerHeight,
-				behavior: 'smooth'
-		})
+	window.scrollTo({
+		top: window.innerHeight,
+		behavior: 'smooth'
+	})
 }
 
 const front = (props) => {
-		const { isProject } = props || false
-		return (
-				<Root>
-						<MenuWrapper>
-						</MenuWrapper>
-						<CopyrightWrapper>
-								{!isProject && <Copyright />}
-						</CopyrightWrapper>
-						<Links/>
-						<Video >
-								<HoverTransformer disable={isProject} >
-										<InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px)', transform: 'translateX(-10%)'}} />
-										{!isProject && <Logo src={slytLogo} />}
-								</HoverTransformer>
-						</Video>
-						<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
-				</Root>
-		)
+	const { isProject } = props || false
+	return (
+		<Root>
+			<MenuWrapper />
+			<CopyrightWrapper>
+				{!isProject && <Copyright />}
+			</CopyrightWrapper>
+			<Links/>
+			<Video>
+				<HoverTransformer disable={isProject} >
+					<InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px) translateX(-10%)'}} />
+					{!isProject && <Logo src={slytLogo} />}
+				</HoverTransformer>
+			</Video>
+			<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
+		</Root>
+	)
 }
 
 front.propTypes = {

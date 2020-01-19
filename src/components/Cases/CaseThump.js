@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import HoverTransformer from '../HoverTransformer'
 import arrow from '../../graphics/arrow-white.svg'
-import AniLink from "gatsby-plugin-transition-link/AniLink"
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import slytLogo from '../../graphics/slytBlack.svg'
 
 const Root = styled.div`
@@ -13,7 +13,6 @@ const Root = styled.div`
     background: url(${props => props.image + '?w=400&h=400'});
     background-size:cover;  
     background-position: center;
-    color: white;
     font-weight: bolder;
 
     :after {
@@ -21,10 +20,10 @@ const Root = styled.div`
         display: block;
         padding-bottom: 100%;
     }
-    filter: brightness(0.8) contrast(1.1);
+    filter: brightness(1) contrast(1.1);
     transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
    :hover {
-      filter: brightness(1);
+      filter: brightness(0.9);
    }
 
 `
@@ -35,12 +34,10 @@ const Content = styled.div`
     bottom:5px;
     left:5px;
     right:5px;
-    
 `
 
 const Arrow = styled.img`
     position: absolute;
-
     width: 20%;
     transform: translateZ(40px);
     ${props => props.big ? css`
@@ -50,16 +47,23 @@ const Arrow = styled.img`
     ` : css`
         right: 15px;
         bottom: 15px;
-        opacity: 0;
+	    opacity: ${props.no ? 1 : 0};
         font-size: 15px;
-        filter: drop-shadow(0 0 5px rgba(0,0,0, 0.4));
-
+        filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.4})) ${props.no && 'invert(1)'};
     `}
+    ${props => props.no && css`
+		right: 0;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		width: 35%;
+	`}
 `
 const Title = styled.h3`
     pointer-events: none;
     transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
-    color: white;
+    color: ${props => props.no ? 'black' : 'white'};
     position: absolute;
     width: 50%;
     ${props => props.big ? css`
@@ -70,20 +74,23 @@ const Title = styled.h3`
     ` : css`
         left: 15px;
         bottom: 10px;
-        opacity: 0;
+        opacity: ${props.no ? 1 : 0};
         font-size: 15px;
-        filter: drop-shadow(0 0 5px rgba(0,0,0, 0.9));
+        filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.9}));
 
     `}
     transform: translateZ(40px);
     b {
         font-weight:bolder;
     }
+    ${props => props.no && css`
+		width: 100%;
+	`}
 `
 
 const HoverTransformerWrapper = styled(HoverTransformer)`
     cursor: pointer;
-        transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
+    transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
     :hover{
         transform: translateZ(0px) scale3d(0.90, 0.90, 0.90);
         ${Title}{
@@ -100,20 +107,26 @@ const HoverTransformerWrapper = styled(HoverTransformer)`
 
 
 const CaseThump = (props) => {
-    const project = props.getProject()
-    return (
-        <HoverTransformerWrapper className={props.className} >
-            <Arrow src={arrow} big={props.big} />
-            <Title big={props.big}> {
-                props.big ? <>
-                    <b>latest </b><span>project</span>
-                </> : <span>{project.case.title}</span>
-                }
-            </Title>
-            <AniLink
-                onClick={props.openProject(project.index)}
-                cover
-                bg={`
+	const project = props.no ? {
+		index: 'all',
+		case: {
+			slug: '',
+			title: 'See all cases'
+		}
+	} : props.getProject()
+	return (
+		<HoverTransformerWrapper className={props.className} >
+			<Arrow no={props.no} src={arrow} big={props.big} />
+			<Title no={props.no} big={props.big}> {
+				props.big ? <>
+					<b>latest </b><span>project</span>
+				</> : <span>{project.case.title}</span>
+			}
+			</Title>
+			<AniLink
+				onClick={props.openProject(project.index)}
+				cover
+				bg={`
                     url(${slytLogo})
                     center / 15%   /* position / size */
                     no-repeat        /* repeat */
@@ -122,27 +135,32 @@ const CaseThump = (props) => {
                     content-box      /* clip */
                     white            /* color */
                 `}
-                color="white"
-                direction="down"
-                delay={5}
-                entry={{
-                    delay: 0.5
-                }}
-                duration={1}
+				color="white"
+				direction="down"
+				delay={5}
+				entry={{
+					delay: 0.5
+				}}
+				duration={1}
 
-                to={"/cases/" + project.case.slug}>
+				to={'/cases/' + project.case.slug}>
 
-                <Root className={props.className} image={(project && project.case.coverImage.fluid.src) || null}>
-                    <Content>
-                    </Content>
-                </Root>
-            </AniLink>
-        </HoverTransformerWrapper>
-    )
+				<Root className={props.className} image={(props.no || project && project.case.coverImage.fluid.src) || null}>
+					<Content>
+					</Content>
+				</Root>
+			</AniLink>
+		</HoverTransformerWrapper>
+	)
 }
 
 CaseThump.propTypes = {
-    blank: PropTypes.bool,
+	className: PropTypes.string,
+	blank: PropTypes.bool,
+	big: PropTypes.bool,
+	no: PropTypes.bool,
+	openProject: PropTypes.func,
+	getProject: PropTypes.func,
 }
 
 export default CaseThump
