@@ -26,10 +26,12 @@ const PositionLabel = (props) => {
 	}
 	scale = props.scale || 30
 
+	console.log(props.perspective)
+
 	return (
 		<div style={isPositionOutside ? {
 			transition: `2s cubic-bezier(0, 0.59, 0.08, 1) `,
-			transform: (`perspective(2000px) rotateX(${yPos * scale}deg) rotateY(${xPos * scale}deg)`),
+			transform: (`perspective(${props.perspective || 2000}px) rotateX(${yPos * scale}deg) rotateY(${xPos * scale}deg)`),
 			willChange: 'transform',
 			transformStyle: 'preserve-3d',
 		} : {
@@ -50,7 +52,7 @@ const HoverTransformer = props => {
 
 	return disable ? <>{children}</> :
 		<ReactCursorPosition className={props.className} >
-			<PositionLabel scale={props.scale}>
+			<PositionLabel perspective={props.perspective} scale={props.scale}>
 				{children}
 			</PositionLabel>
 		</ReactCursorPosition>
@@ -60,11 +62,16 @@ HoverTransformer.propTypes = {
 	className: PropTypes.string,
 	scale: PropTypes.int,
 	children: PropTypes.any,
+	perspective: PropTypes.int,
+	detectedEnvironment: PropTypes.object,
+	elementDimensions: PropTypes.object,
 }
 
 PositionLabel.propTypes = {
 	className: PropTypes.string,
+	children: PropTypes.any,
 	scale: PropTypes.int,
+	perspective: PropTypes.int,
 }
 
 export default HoverTransformer

@@ -22,9 +22,13 @@ const Root = styled.div`
     }
     filter: brightness(1) contrast(1.1);
     transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
-   :hover {
-      filter: brightness(0.9);
-   }
+   ${props => props.no ? css`
+	background: white;
+	` : css`
+	   :hover {
+	      filter: brightness(0.9);
+	   }
+	`}
 
 `
 
@@ -49,8 +53,8 @@ const Arrow = styled.img`
         bottom: 15px;
 	    opacity: ${props.no ? 1 : 0};
         font-size: 15px;
-        filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.4})) ${props.no && 'invert(1)'};
-    `}
+        filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.4})) ${props.no && 'invert(1)'}
+    `};
     ${props => props.no && css`
 		right: 0;
 		left: 0;
@@ -58,14 +62,15 @@ const Arrow = styled.img`
 		bottom: 0;
 		margin: auto;
 		width: 35%;
-	`}
+	`};
+    pointer-events: none;
 `
 const Title = styled.h3`
     pointer-events: none;
     transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
     color: ${props => props.no ? 'black' : 'white'};
     position: absolute;
-    width: 50%;
+    width: 60%;
     ${props => props.big ? css`
         left: 30px;
         bottom: 25px;
@@ -76,9 +81,9 @@ const Title = styled.h3`
         bottom: 10px;
         opacity: ${props.no ? 1 : 0};
         font-size: 15px;
-        filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.9}));
+        filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.9}))
 
-    `}
+    `};
     transform: translateZ(40px);
     b {
         font-weight:bolder;
@@ -145,7 +150,7 @@ const CaseThump = (props) => {
 
 				to={'/cases/' + project.case.slug}>
 
-				<Root className={props.className} image={(props.no || project && project.case.coverImage.fluid.src) || null}>
+				<Root className={props.className} no={props.no} image={(props.no || project && project.case.coverImage.fluid.src) || null}>
 					<Content>
 					</Content>
 				</Root>

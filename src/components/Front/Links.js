@@ -7,7 +7,6 @@ const Root = styled.div`
     align-items:center;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-    transform: translate3d(10px, 10px, 50px);
 
 `
 

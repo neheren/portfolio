@@ -36,6 +36,7 @@ const Video = styled.div`
     @media ${props => props.theme.media.md} {
     	grid-column: 1 / 4;
     }
+
 `
 
 const Hover = styled(HoverTransformer)`
@@ -54,7 +55,6 @@ const MenuWrapper = styled.div`
     margin: ${props => props.theme.spacing(4)};
     justify-self: center;
     align-self: center;
-    transform: translateZ(250px);
 `
 
 const Logo = styled.img`
@@ -112,8 +112,7 @@ const scrollDown = () => {
 const front = (props) => {
 	const { isProject } = props || false
 	return (
-
-		<Hover scale={10} disable={isProject} >
+		<Hover scale={10} disable={isProject}>
 			<Root>
 				<MenuWrapper />
 				<CopyrightWrapper>
