@@ -116,7 +116,7 @@ const CaseThump = (props) => {
 		index: 'all',
 		case: {
 			slug: '',
-			title: 'See all cases'
+			title: 'see <b>all</b>'
 		}
 	} : props.getProject()
 	return (
@@ -125,7 +125,7 @@ const CaseThump = (props) => {
 			<Title no={props.no} big={props.big}> {
 				props.big ? <>
 					<b>latest </b><span>project</span>
-				</> : <span>{project.case.title}</span>
+				</> : <span dangerouslySetInnerHTML={{__html: project.case.title}} />
 			}
 			</Title>
 			<AniLink

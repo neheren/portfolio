@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 function cases(props) {
     return (
         <div>
-            hey!
+            cases
         </div>
     )
 }

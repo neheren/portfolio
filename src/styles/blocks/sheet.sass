@@ -21,18 +21,21 @@
   margin-bottom: 30px
 
 .sheet__body
-  color: $light-body-color
+  color: black
   font-size: 14px
   margin-bottom: 30px
 
   h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol
     margin-bottom: 20px
+    column-count: 2;
 
     &:last-child
       margin-bottom: 0
 
   h1, h2, h3, h4, h5, h6
     font-weight: bold
+    column-count: 1;
+
     margin-top: 40px
     color: $dark-body-color
 
@@ -48,6 +51,7 @@
   li
     margin-left: 20px
     margin-bottom: 5px
+
 
   ol li
     list-style-type: decimal
