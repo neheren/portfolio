@@ -3,7 +3,7 @@ let apiKey
 try{
    apiKey = require('./api-key');
 } catch (e) {
-  console.warn(e) 
+  console.warn(e)
   apiKey = {}
   apiKey.key = null
 }
@@ -18,7 +18,12 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-transition-link`,
-
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
+    },
     {
       resolve: "gatsby-plugin-react-svg",
       options: {

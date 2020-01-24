@@ -1,21 +1,25 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import {ThemeProvider} from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import Front from '../components/Front/index.js'
 import theme from '../styles/theme'
 import Cases from '../components/Cases'
-import Menu from '../components/Menu';
-import About from '../components/About/About';
+import Menu from '../components/Menu'
+import About from '../components/About/About'
+import {HelmetDatoCms} from 'gatsby-source-datocms'
 
-const IndexPage = ({ data }) => {
-  return(
-  <ThemeProvider theme={theme}>
-    <Menu />
-    <Front videoLink={data.home.modelVideo.url} />
-    <Cases />
-    <About data={data.about} />
-  </ThemeProvider>
-)}
+const IndexPage = ({data}) => {
+	return	<ThemeProvider theme={theme}>
+		<Menu/>
+		<HelmetDatoCms seo={data.seoMetaTags} />
+		<Front videoLink={data.home.modelVideo.url} isProject={false}/>
+		<Cases />
+		<About data={data.about}/>
+	</ThemeProvider>
+}
+
+IndexPage.propTypes = {
+}
 
 export default IndexPage
 
@@ -25,21 +29,26 @@ export const query = graphql`
       modelVideo {
         url
       }
+      seoSettings {
+        description
+        title
+        twitterCard
+      }
+	  seoMetaTags {
+	    tags
+       }
     }
 
     about: datoCmsAboutPage {
       title
       subtitle
+      bio
       photo {
         fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
           ...GatsbyDatoCmsSizes
         }
       }
-      bioNode {
-        childMarkdownRemark {
-          html
-        }
-      }
+      
     }
   
     allDatoCmsWork(sort: { fields: [position], order: ASC }) {

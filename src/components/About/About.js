@@ -1,8 +1,8 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
-import styled from 'styled-components';
-import { Fade } from 'react-reveal';
-import Container from '../Shared/Container';
+import styled from 'styled-components'
+import { Fade } from 'react-reveal'
+import Container from '../Shared/Container'
 import Img from 'gatsby-image'
 
 const Root = styled.div`
@@ -72,13 +72,14 @@ const Header = styled.h2`
 const Right = styled.div``
 
 export default (props) => {
-    return(
+    console.log({bio: props.data.bio})
+    return (
         <GradiantBGWrapper>
             <GradiantBG>
                 <Root>
                     <Container>
                         <Content>
-                            <Image fluid={props.data.photo.fluid} />
+                            <Image fluid={props.data.photo.fluid}/>
                             <Right>
                                 <Header>
                                     <Fade bottom>

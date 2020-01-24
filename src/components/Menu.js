@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
+import Link from 'gatsby-plugin-transition-link';
 import MenuOverlay from './MenuOverlay';
 import { window } from 'global'
 
@@ -15,22 +16,42 @@ const Burger = styled.div`
     height: ${props => props.theme.spacing(4)};
     left: ${props => props.theme.spacing(4)};
     top: ${props => props.theme.spacing(4)};
-    ${props => props.burgerState !== BURGER_STATES.ARROW && css`
+    @media ${props => props.theme.media.md} {
+        left: ${props => props.theme.spacing(2)};
+        top: ${props => props.theme.spacing(2)};
+    }
+    ${props => props.burgerState !== BURGER_STATES.ARROW ? css`
         cursor: pointer;
+
+        * {
+          backdrop-filter: invert(1) grayscale(1);
+        }
+    ` : css`
+        * {
+          background-color: black;
+        }
+    `}
+    ${props => props.isProject && css`
+        cursor: pointer;
+
     `}
     position: fixed;
     display: inline;
     z-index: 3000;
+    transition: 0.5s cubic-bezier(0.75, 0, 0.26, 0.98);
+
+    ${props => props.isProject && props.burgerState === BURGER_STATES.ARROW && css`
+        transform: rotate(-180deg);
+    `}
 `
 
 const Line = styled.div`
     z-index: 1000;
-    height: 2px;
+    height: 3px;
     width: 100%;
     position: absolute;
     transition: 0.5s cubic-bezier(0.75, 0, 0.26, 0.98), background-color 0.3s linear;
     margin: auto;
-    background-color: ${props => props.bgColor};
 
     ${props => props.top && css`
         /* x */
@@ -56,8 +77,9 @@ const Line = styled.div`
             transform: rotate(45deg);
             right: 0;
             width: 30%;
-            left: 73%;
-            bottom: 58%;
+            left: 75%;
+            bottom: 52%;
+
         `}
     `}
 
@@ -86,8 +108,8 @@ const Line = styled.div`
             transform: rotate(-45deg);
             right: 0;
             width: 30%;
-            left: 73%;
-            top: 58%;
+            left: 75%;
+            top: 55%;
         `}
     `}
 
@@ -96,22 +118,25 @@ const Line = styled.div`
 
 
 const CrossPart = styled.div`
-    background-color: ${props => props.bgColor};
-    height: 2px;
+    height: 3px;
     width: 100%;
     position: absolute;
     transition: 0.5s cubic-bezier(0.75, 0, 0.26, 0.98), background-color 0.3s linear;
     top:0;
     bottom:0;
     margin: auto;
+    opacity: ${props => props.rev ? 1 : 0};
     ${props => props.burgerState === BURGER_STATES.EXIT && css`
-        transform: ${props => props.rev ? 'rotate(-45deg)' : 'rotate(45deg)'};
-    `}
+        opacity: 1;
+        transform: ${props => props.rev ? 'rotate(-45deg)' : 'rotate(45deg)'}
+    `};
+
 `
 
 
 export default class Menu extends Component {
     static propTypes = {
+        isProject: PropTypes.bool,
     }
 
     componentDidMount(){
@@ -121,13 +146,13 @@ export default class Menu extends Component {
     componentWillUnmount(){
         window.removeEventListener('scroll', this.handleScroll.bind(this));
     }
-    
+
     state = {
         LineColor: 'black',
         burgerState: BURGER_STATES.ARROW,
         burgerIndex: 1,
     }
-    
+
     handleScroll() {
         this.setState({
             burgerState: window.pageYOffset > 5 ? BURGER_STATES.BURGER : BURGER_STATES.ARROW,
@@ -148,7 +173,7 @@ export default class Menu extends Component {
         return (
             <>
             {this.state.burgerState === BURGER_STATES.EXIT && <MenuOverlay />}
-            <Burger onClick={this.toggleCollapsed.bind(this)} burgerState={this.state.burgerState}>
+            <Burger isProject={this.props.isProject} onClick={this.toggleCollapsed.bind(this)} burgerState={this.state.burgerState}>
                 <Line collapsed={this.state.collapsed} top burgerState={this.state.burgerState} bgColor={this.state.LineColor}></Line>
                 <Line collapsed={this.state.collapsed} bottom burgerState={this.state.burgerState} bgColor={this.state.LineColor}></Line>
                 <CrossPart collapsed={this.state.collapsed} burgerState={this.state.burgerState} bgColor={this.state.LineColor}/>

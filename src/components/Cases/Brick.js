@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const Root = styled.div`
@@ -14,17 +14,10 @@ const Root = styled.div`
         0% {
             transform: perspective(1000px) rotateX(0deg) rotateY(0) scale(1);; 
         }
-        /* 10% {
-            transform: perspective(1000px) rotateX(0deg) rotateY(0) scale(0.8);
-        } */
         100% {
-            /* outline: 5px solid black; */
             transform: perspective(1000px) rotateX(50deg) rotateY(0) scale(0.90);
-            /* transform: scale(0.2); */
         }
     }
-
-
     :after {
         content: "";
         display: block;
@@ -43,7 +36,7 @@ const Root = styled.div`
         transform-style: preserve-3d; 
         /* transition: all 1s cubic-bezier(0.19, 1, 0.22, 1); */
         /* transform: perspective(2000px) rotateX(0deg) rotateY(90deg) translateZ(1000px);  */
-        animation: moveOut 0.5s forwards cubic-bezier(0.77, 0, 0.175, 1);
+//        animation: moveOut 0.5s forwards cubic-bezier(0.77, 0, 0.175, 1);
     `}
 `
 
@@ -62,30 +55,33 @@ const Content = styled.div`
     `}
 `
 
-const Title = styled.h2`
-    
-`
+const Title = styled.h2``
 
 
 const Brick = props => {
-    const tileIndex = props.getTileIndex()
-    return (
-        <Root   
-            className={props.className} 
-            db={props.db} 
-            projectOpened={props.projectOpened} 
-            i={tileIndex}>
-                <Content db={props.db}>
-                        {props.db && <Title>
-                            cases
-                        </Title>}
-                </Content>
-        </Root>
-    )
+	const tileIndex = props.getTileIndex()
+	return (
+		<Root
+			className={props.className}
+			db={props.db}
+			projectOpened={props.projectOpened}
+			i={tileIndex}>
+			{props.db &&
+			<Content db={props.db}>
+				<Title>
+					cases
+				</Title>
+			</Content>
+			}
+		</Root>
+	)
 }
 
 Brick.propTypes = {
-    
+	className: PropTypes.string,
+	db: PropTypes.bool,
+	projectOpened: PropTypes.bool,
+	getTileIndex: PropTypes.func,
 }
 
 export default Brick
