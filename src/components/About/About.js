@@ -51,14 +51,18 @@ const GradiantBG = styled.div`
         grid-template-columns: repeat(2, 1fr);
     }
     width: 100%;
-    background-image: linear-gradient(0deg,#FF1570 0% ,#E94700 calc(100% - 100vw / 10), rgba(1,1,1,0) );
+    background-image: linear-gradient(0deg,#ff154a 0% ,#ff6b14 calc(100% - 100vw / 10),rgba(1,1,1,0) );
 `
 
 const GradiantBGWrapper = styled.div`
     background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
 `
 
-const Desc = styled.div``
+const Desc = styled.div`
+    strong{
+        font-weight: bold;
+    }
+`
 
 const Header = styled.h2`
     font-size: 30px;
@@ -82,7 +86,7 @@ export default (props) => {
                                     </Fade>
                                 </Header>
                                 <Fade bottom>
-                                    <Desc dangerouslySetInnerHTML={{__html: props.data.bioNode.childMarkdownRemark.html}}>
+                                    <Desc dangerouslySetInnerHTML={{__html: props.data.bio}}>
                                     </Desc>
                                 </Fade>
                             </Right>
