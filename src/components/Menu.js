@@ -47,7 +47,7 @@ const Burger = styled.div`
 
 const Line = styled.div`
     z-index: 1000;
-    height: 3px;
+    height: 2px;
     width: 100%;
     position: absolute;
     transition: 0.5s cubic-bezier(0.75, 0, 0.26, 0.98), background-color 0.3s linear;
@@ -78,7 +78,7 @@ const Line = styled.div`
             right: 0;
             width: 30%;
             left: 75%;
-            bottom: 52%;
+            bottom: 56%;
 
         `}
     `}
@@ -109,7 +109,7 @@ const Line = styled.div`
             right: 0;
             width: 30%;
             left: 75%;
-            top: 55%;
+            top: 56%;
         `}
     `}
 
@@ -118,7 +118,7 @@ const Line = styled.div`
 
 
 const CrossPart = styled.div`
-    height: 3px;
+    height: 2px;
     width: 100%;
     position: absolute;
     transition: 0.5s cubic-bezier(0.75, 0, 0.26, 0.98), background-color 0.3s linear;
@@ -155,17 +155,20 @@ export default class Menu extends Component {
 
     handleScroll() {
         this.setState({
-            burgerState: window.pageYOffset > 5 ? BURGER_STATES.BURGER : BURGER_STATES.ARROW,
+            burgerState: this.shouldDisplayArrow () ? BURGER_STATES.ARROW : BURGER_STATES.BURGER,
         })
         this.setState({
             LineColor: (window.pageYOffset > window.innerHeight * 2 || this.state.burgerState === BURGER_STATES.EXIT ? 'white' : 'black')
         })
+    }
 
+    shouldDisplayArrow () {
+        return window.pageYOffset < 5
     }
 
     toggleCollapsed (){
         this.setState({
-            burgerState: (this.state.burgerState === BURGER_STATES.EXIT) ? BURGER_STATES.BURGER : BURGER_STATES.EXIT,
+            burgerState: (this.state.burgerState === BURGER_STATES.EXIT) ? this.shouldDisplayArrow () ? BURGER_STATES.ARROW : BURGER_STATES.BURGER : BURGER_STATES.EXIT,
         })
     }
 

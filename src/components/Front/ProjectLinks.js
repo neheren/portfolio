@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import projectArrow from '../../graphics/project-arrow.svg'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const Root = styled.div`
     height: 100%;
@@ -9,13 +10,12 @@ const Root = styled.div`
     align-items:center;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-
 `
 
 const LinkWrapper = styled.div`
     max-width: 100%;
 `
-const LinkItem = styled.a`
+const LinkItem = styled.span`
     text-decoration: none;
     color: black;
     font-weight: ${props => props.first ? 'bold' : 'normal'};
@@ -25,7 +25,7 @@ const LinkItem = styled.a`
     @media ${props => props.theme.media.sm} {
         font-size: 12px;
     }
-
+    pointer-events: ${props => props.first ? 'all': 'none'};
 `
 
 const Arrow = styled.img`
@@ -37,7 +37,9 @@ const Arrow = styled.img`
 function ProjectLinks(props) {
     return (
         <Root>
-            <LinkItem href="/cases" first>cases</LinkItem>
+            <AniLink to="/cases" swipe direction="right" duration={0.4} style={{textDecoration: 'none'}}>
+                <LinkItem first>cases</LinkItem>            
+            </AniLink>
             <Arrow src={projectArrow} />
             <LinkItem>case name</LinkItem>
         </Root>
