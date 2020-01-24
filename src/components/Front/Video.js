@@ -21,8 +21,7 @@ const RP = styled (ReactPlayer)`
 
 
 function Video(props) {
-    const overSized = (!props.isProject) || false;
-    const isProject = props.isProject || false;
+    const isProject = props.isProject || false
     return (
 		<RP loop={!isProject} muted height="inherit" width="inherit" controls={isProject} playsinline={isProject} playing url={props.videoLink}  />
     )

@@ -109,7 +109,7 @@ class OuterWork extends Component {
             <>
                 <Root>
                     {
-                        tiles//.map((tile, i) => <tile.type {...tile.props} key={i}/>)
+                        tiles.map((tile, i) => <tile.type {...tile.props} key={i}/>)
                     }
                 </Root>
             </>

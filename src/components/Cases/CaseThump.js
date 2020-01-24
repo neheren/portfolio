@@ -10,7 +10,7 @@ const Root = styled.div`
     position: relative;
     width: 100%;
     overflow:hidden;
-    background: url(${props => props.image + '?w=400&h=400'});
+    background: url(${props => props.image + '?w=500&h=500'});
     background-size:cover;  
     background-position: center;
     font-weight: bolder;

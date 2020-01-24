@@ -26,8 +26,6 @@ const PositionLabel = (props) => {
 	}
 	scale = props.scale || 30
 
-	console.log(props.perspective)
-
 	return (
 		<div style={isPositionOutside ? {
 			transition: `2s cubic-bezier(0, 0.59, 0.08, 1) `,
