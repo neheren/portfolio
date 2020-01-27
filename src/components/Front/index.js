@@ -119,7 +119,7 @@ const front = (props) => {
 				<CopyrightWrapper>
 					{!isProject && <Copyright />}
 				</CopyrightWrapper>
-				{isProject ? <ProjectLinks/> : < Links/>}
+				{isProject ? <ProjectLinks caseName={props.caseName} /> : < Links/>}
 					<Video>
 						<InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px) translateX(-10%)'}} />
 						{!isProject && <Logo src={slytLogo} />}
@@ -131,6 +131,7 @@ const front = (props) => {
 }
 
 front.propTypes = {
+    caseName: PropTypes.string,
 	videoLink: PropTypes.string,
 	isProject: PropTypes.bool,
 }

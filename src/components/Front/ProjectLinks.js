@@ -19,13 +19,12 @@ const LinkItem = styled.span`
     text-decoration: none;
     color: black;
     font-weight: ${props => props.first ? 'bold' : 'normal'};
-    @media ${props => props.theme.media.md} {
-    	margin-left: ${props => props.first ? props.theme.spacing(0) : props.theme.spacing(1.5)};
-    }
+    pointer-events: ${props => props.first ? 'all': 'none'};
+
     @media ${props => props.theme.media.sm} {
         font-size: 12px;
     }
-    pointer-events: ${props => props.first ? 'all': 'none'};
+    text-transform: lowercase;
 `
 
 const Arrow = styled.img`
@@ -41,13 +40,13 @@ function ProjectLinks(props) {
                 <LinkItem first>cases</LinkItem>            
             </AniLink>
             <Arrow src={projectArrow} />
-            <LinkItem>case name</LinkItem>
+            <LinkItem>{props.caseName}</LinkItem>
         </Root>
     )
 }
 
 ProjectLinks.propTypes = {
-
+    caseName: PropTypes.string,
 }
 
 export default ProjectLinks

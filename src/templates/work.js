@@ -69,7 +69,7 @@ const SliderWrapped = styled(Slider)`
 
 export default ({ data }) => (
 	<ThemeProvider theme={theme}>
-		<Front isProject videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''} />
+		<Front isProject videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''} caseName={data.datoCmsWork.title} />
 		<HelmetDatoCms seo={data.datoCmsWork.seoMetaTagsseoMetaTags} />
 		<Doc>
       <Menu isProject></Menu>
