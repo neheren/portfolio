@@ -1,6 +1,6 @@
 # Schlüters gatsby portfolio
 
-### Add gitignored private api key to ./api in the format:
+### Add gitignored private api key to ./api-key.js in the format:
 ``
 module.exports = 'API-KEY-HERE'
 ``
