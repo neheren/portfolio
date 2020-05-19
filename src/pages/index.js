@@ -12,7 +12,7 @@ const IndexPage = ({data}) => {
 	return	<ThemeProvider theme={theme}>
 		<Menu/>
 		<HelmetDatoCms seo={data.seoMetaTags} />
-		<Front videoLink={data.home.modelVideo.url} isProject={false}/>
+		<Front videoLink={'http://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
 		<Cases />
 		<About data={data.about}/>
 	</ThemeProvider>

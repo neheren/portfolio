@@ -40,7 +40,7 @@ const Video = styled.div`
 
 `
 
-const Hover = styled(HoverTransformer)`
+const Hover = styled.div`
     background: #EFEFEF;
 
     grid-column: 2 / 3;
